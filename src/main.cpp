@@ -24,7 +24,12 @@ int main() {
             }
            
         } else if (mode == 2) {
-
+            if (!menu.memberAccess) {
+                menu.memberPassword(mode);
+            }
+            while (menu.memberAccess) {
+                menu.memberMenu(mode);
+            }
         } else if (mode == 0) {
             cout << "Exiting video store";
             return 0;
