@@ -4,38 +4,36 @@
 #include "MovieCollection.h"
 #include "MemberCollection.h"
 #include "Member.h"
-#include "menu.h"
+#include "Menu.h"
 
 using std::cout; using std::endl; using std::cin;
 
+bool videoStore = true;;
+Menu menu;
+
 int main() {
     int mode = -1;
-    while (mode == -1) {
-        int something = mainMenu();
-        cout << something;
-    }
+    while (videoStore) {
 
-}
+        if (mode == 1) {
+            if (!menu.staffAccess) {
+                menu.staffPassword(mode);
+            } 
+            while (menu.staffAccess) {
+                menu.staffMenu(mode);
+            }
+           
+        } else if (mode == 2) {
 
-
-int mainMenu(){
-    cout << "===========Main Menu===========" << endl;
-    cout << "1. Staff Login" << endl;
-    cout << "2. Member Login" << endl;
-    cout << "0. Exit" << endl;
-    cout << "===============================" << endl;
-    cout << "Please make a selection (1-2, 0 or exit):"<<endl;
-    char input = 0;
-    cin>>input;
-    switch(input) {
-        case '1':
-            return 1;
-        case '2':
-            return 2;
-        case '0':
+        } else if (mode == 0) {
+            cout << "Exiting video store";
             return 0;
-        default:
-            cout << input << " is invalid, select an input 1-2 or 0 to exit:" << endl;
-            return -1;
-    }
+        } else {
+            mode = menu.mainMenu();
+        }
+    }   
+
 }
+
+
+
