@@ -12,7 +12,11 @@ bool videoStore = true;;
 Menu menu;
 MemberCollection memberCol;
 
+void importData();
+
 int main() {
+    importData();
+    cin.ignore();
     int mode = -1;
     while (videoStore) {
 
@@ -23,6 +27,7 @@ int main() {
             while (menu.staffAccess) {
                 int staffMode = menu.staffMenu(mode);
                 if (staffMode == 3) {
+                    //importData();
                     memberCol.registerMember();
                 }
 
@@ -45,5 +50,30 @@ int main() {
 
 }
  
+void importData() {
+    memberCol.members[0] = Member(
+        "Vanessa",
+        "Li",
+        "Address 1",
+        "12345678",
+        "1111"
+    );
+    memberCol.members[1] = Member(
+        "Jarod",
+        "Lam",
+        "Address 2",
+        "12345678",
+        "1111"
+    );
 
+    memberCol.members[2] = Member(
+        "Alan",
+        "Yu",
+        "Address 3",
+        "12345678",
+        "1111"
+    );
+
+
+}
 

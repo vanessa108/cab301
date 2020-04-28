@@ -9,6 +9,12 @@ void MemberCollection::registerMember() {
     string firstName = dataEntry("first name");
     string lastName = dataEntry("last name");
     //check duplicate
+    for (int i = 0; i < totalMembers; i++) {
+        if (members[i].firstName == firstName and members[i].lastName == lastName) {
+            cout << firstName << " " << lastName << " has already registered." << endl;
+            return;
+        }
+    }
     string address = dataEntry("address");
     string phNum = dataEntry("phone number");
     string pwd = dataEntry("password (4 digits)");
@@ -17,6 +23,8 @@ void MemberCollection::registerMember() {
         pwd = dataEntry("password (4 digits)");
     }
     members[totalMembers] = Member(firstName, lastName, address, phNum, pwd);
+    totalMembers += 1;
+    cout << "Sucessfully added " << firstName <<" "<< lastName << endl;
     
 
 

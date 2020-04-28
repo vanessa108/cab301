@@ -19,7 +19,8 @@ public:
         address{_address}, 
         phoneNum{_phoneNum}, 
         pwd{_pwd} 
-        {}
+        {
+        }
         
     //data strcture with information about all movies the member is holding
     // key with movie name, size_t with number of copies held

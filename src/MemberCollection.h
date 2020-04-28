@@ -18,9 +18,10 @@ public:
     void borrowMovie();
     void returnMovie();
     void listMemberMovies();
+    int totalMembers = 3;
 
 private:
-    int totalMembers = 0; //number of members registered in the system
+     //number of members registered in the system
     string dataEntry(string dataName);
     bool passwordValidation(string pwd);
 
