@@ -13,7 +13,7 @@ public:
     bool staffAccess = false;
 
     void memberMenu(int & mode);
-    void memberPassword(int &mode);
+    void memberPassword(int &mode, MemberCollection &memberCol);
     bool memberAccess = false; 
     
 private:

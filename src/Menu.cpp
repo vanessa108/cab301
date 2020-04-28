@@ -81,7 +81,7 @@ int Menu::staffMenu(int &mode){
     return 0;
 }
 
-void Menu::memberPassword(int &mode) {
+void Menu::memberPassword(int &mode, MemberCollection &memberCol) {
     string username; string password;
     cout << "Username: "; cin >> username;
     cout << "Password: "; cin >> password;
@@ -95,15 +95,17 @@ void Menu::memberPassword(int &mode) {
     }
     lastName = username.substr(0, caps);
     firstName = username.substr(caps); 
-    if ((firstName == "Vanessa" and lastName == "Li") and password == "1111") {
+
+
+    if (memberCol.checkMemberPassword(firstName, lastName, password)) {
         memberAccess = true;
     } else {
-        cout << "Username or password incorrect, select 1 to try again or 0 to return to the main menu" << endl;
+        cout << "select 1 to try again or 0 to return to the main menu" << endl;
         int input; cin >> input;
         if (input == 0) {
             mode = -1;
         } else if (input == 1){
-            memberPassword(mode);
+            memberPassword(mode, memberCol);
         }   
     }
 

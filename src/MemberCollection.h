@@ -20,6 +20,8 @@ public:
     void listMemberMovies();
     int totalMembers = 3;
 
+    bool checkMemberPassword(string firstname, string lastname, string password);
+
 private:
      //number of members registered in the system
     string dataEntry(string dataName);

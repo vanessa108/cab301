@@ -27,7 +27,6 @@ int main() {
             while (menu.staffAccess) {
                 int staffMode = menu.staffMenu(mode);
                 if (staffMode == 3) {
-                    //importData();
                     memberCol.registerMember();
                 }
 
@@ -35,7 +34,7 @@ int main() {
            
         } else if (mode == 2) {
             if (!menu.memberAccess) {
-                menu.memberPassword(mode);
+                menu.memberPassword(mode, memberCol);
             }
             while (menu.memberAccess) {
                 menu.memberMenu(mode);

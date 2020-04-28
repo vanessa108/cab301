@@ -1,4 +1,5 @@
 #include "MemberCollection.h"
+#include "Member.h"
 #include <string.h>
 #include <iostream>
 
@@ -50,4 +51,20 @@ bool MemberCollection::passwordValidation(string pwd) {
     } else {
         return false;
     }
+}
+
+bool MemberCollection::checkMemberPassword(string firstname, string lastname, string password) {
+    for (int i = 0; i < totalMembers; i++) {
+        Member registeredMem = members[i];
+        if (firstname == registeredMem.firstName and lastname == registeredMem.lastName) {
+            if (password == registeredMem.pwd) {
+                return true;
+            } else {
+                cout << "Incorrect password, ";
+                return false;
+            }
+        }
+    }
+    cout << "Invalid username, ";
+    return false;
 }
