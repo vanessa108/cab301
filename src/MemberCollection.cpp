@@ -8,15 +8,17 @@ void MemberCollection::registerMember() {
     cin.ignore();
     string firstName = dataEntry("first name");
     string lastName = dataEntry("last name");
+    //check duplicate
     string address = dataEntry("address");
     string phNum = dataEntry("phone number");
     string pwd = dataEntry("password (4 digits)");
     while (!passwordValidation(pwd)) {
-        cout << "Password invalid, must be 4 digtits." << endl;
+        cout << "Password invalid, must be 4 digits." << endl;
         pwd = dataEntry("password (4 digits)");
     }
+    members[totalMembers] = Member(firstName, lastName, address, phNum, pwd);
+    
 
-    cout << firstName << endl << lastName << address << phNum << pwd;
 
 }
 

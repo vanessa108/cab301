@@ -10,7 +10,7 @@ using std::cout; using std::endl; using std::cin; using std::string;
 class MemberCollection {
 public:
     //array of members
-    //Member members[15];
+    Member members[15];
 
 
     void registerMember();

@@ -9,8 +9,17 @@ using std::cout; using std::endl; using std::cin; using std::string;
 
 class Member {
 public:
-    Member(string _lastName, string _firstName, string _address, string _phoneNum, string _pwd) 
-        : lastName{_lastName}, firstName{_firstName}, address{_address}, phoneNum{_phoneNum}, pwd{_pwd} {}
+    //default
+    Member() {
+
+    }
+    Member(string _firstName, string _lastName, string _address, string _phoneNum, string _pwd) 
+        :lastName{_lastName}, 
+        firstName{_firstName}, 
+        address{_address}, 
+        phoneNum{_phoneNum}, 
+        pwd{_pwd} 
+        {}
         
     //data strcture with information about all movies the member is holding
     // key with movie name, size_t with number of copies held

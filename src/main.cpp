@@ -10,7 +10,7 @@ using std::cout; using std::endl; using std::cin;
 
 bool videoStore = true;;
 Menu menu;
-MemberCollection members;
+MemberCollection memberCol;
 
 int main() {
     int mode = -1;
@@ -23,7 +23,7 @@ int main() {
             while (menu.staffAccess) {
                 int staffMode = menu.staffMenu(mode);
                 if (staffMode == 3) {
-                    members.registerMember();
+                    memberCol.registerMember();
                 }
 
             }
