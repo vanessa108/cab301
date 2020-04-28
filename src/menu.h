@@ -2,12 +2,13 @@
 #define MENU_H
 
 #include<iostream>
+#include "MemberCollection.h"
 
 class Menu {
 public:
     int mainMenu();
 
-    void staffMenu(int &mode);
+    int staffMenu(int &mode);
     void staffPassword(int &mode);
     bool staffAccess = false;
 

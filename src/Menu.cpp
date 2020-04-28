@@ -45,7 +45,7 @@ void Menu::staffPassword(int &mode) {
     }
 }
 
-void Menu::staffMenu(int &mode){
+int Menu::staffMenu(int &mode){
 
     cout << "\n===========Staff Menu===========" << endl;
     cout << "1. Add a new movie DVD" << endl;
@@ -64,7 +64,7 @@ void Menu::staffMenu(int &mode){
             //return 2;
             break;
         case '3':
-            //return 2;
+            return 3;
             break;
         case '4':
             //return 2;
@@ -78,6 +78,7 @@ void Menu::staffMenu(int &mode){
             break;
             //return -1;
     }
+    return 0;
 }
 
 void Menu::memberPassword(int &mode) {
