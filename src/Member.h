@@ -9,10 +9,11 @@ using std::cout; using std::endl; using std::cin; using std::string;
 
 class Member {
 public:
-    //default
+    // default initialiser when first initialising MemberCollection array
     Member() {
 
     }
+    // initialise when a new member is added
     Member(string _firstName, string _lastName, string _address, string _phoneNum, string _pwd) 
         :lastName{_lastName}, 
         firstName{_firstName}, 
@@ -25,7 +26,6 @@ public:
     //data strcture with information about all movies the member is holding
     // key with movie name, size_t with number of copies held
     std::map<string, size_t> moviesHeld;
-    //string customerID;
     string lastName;
     string firstName;
     string address;

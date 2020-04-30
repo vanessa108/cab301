@@ -9,22 +9,26 @@ using std::cout; using std::endl; using std::cin; using std::string;
 
 class MemberCollection {
 public:
-    //array of members
-    Member members[15];
+    
+    Member members[15];     //array of members
+    int totalMembers = 3;   //total number of members stored, used for indexing array
 
-
+    // registers a new member and adds to member collection
     void registerMember();
+    // Validate a member's login details
+    bool checkMemberPassword(string username, string password);
+
+    // not implemented
     void findMemberPhone();
     void borrowMovie();
     void returnMovie();
     void listMemberMovies();
-    int totalMembers = 3;
-
-    bool checkMemberPassword(string firstname, string lastname, string password);
+    
 
 private:
-     //number of members registered in the system
+    // requests user input and returns string
     string dataEntry(string dataName);
+    // checks that a new member's passowrd is valid (has 4 digits)
     bool passwordValidation(string pwd);
 
 };

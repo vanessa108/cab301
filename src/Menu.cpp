@@ -53,7 +53,7 @@ int Menu::staffMenu(int &mode){
     cout << "3. Register a new Member" << endl;
     cout << "4. Find a registered member's phone number" << endl;
     cout << "0. Return to main menu" << endl;
-    cout << "================================" << endl;
+    cout << "=================================" << endl;
     cout << "Please make a selection (1-4, 0 or return to main menu):"<<endl;
     char input = 0;
     cin>>input;
@@ -85,19 +85,8 @@ void Menu::memberPassword(int &mode, MemberCollection &memberCol) {
     string username; string password;
     cout << "Username: "; cin >> username;
     cout << "Password: "; cin >> password;
-    string firstName; string lastName;
-    int caps; //find capital letter to split username into first and last name
-    for (int i = 1; i < username.size(); i++) {
-        if (isupper(username[i])) {
-            caps = i;
-            break;
-        }
-    }
-    lastName = username.substr(0, caps);
-    firstName = username.substr(caps); 
 
-
-    if (memberCol.checkMemberPassword(firstName, lastName, password)) {
+    if (memberCol.checkMemberPassword(username, password)) {
         memberAccess = true;
     } else {
         cout << "select 1 to try again or 0 to return to the main menu" << endl;

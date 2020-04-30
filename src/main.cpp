@@ -8,23 +8,25 @@
 
 using std::cout; using std::endl; using std::cin;
 
-bool videoStore = true;;
-Menu menu;
-MemberCollection memberCol;
+bool videoStore = true; //program running
+Menu menu; // initialise menu class
+MemberCollection memberCol; //initialise member class
 
-void importData();
+void importData(); 
 
 int main() {
-    importData();
+    importData(); //import data
     cin.ignore();
+    // video store modes, -1 = main menu, 1 = staff mode, 2 = member mode, 3 = exit video store
     int mode = -1;
     while (videoStore) {
-
         if (mode == 1) {
             if (!menu.staffAccess) {
+                // retrieve and validate staff login
                 menu.staffPassword(mode);
             } 
             while (menu.staffAccess) {
+                // display and retrieve input from staff menu
                 int staffMode = menu.staffMenu(mode);
                 if (staffMode == 3) {
                     memberCol.registerMember();
@@ -33,12 +35,14 @@ int main() {
             }
            
         } else if (mode == 2) {
+            // retrieve and validate member login
             if (!menu.memberAccess) {
                 menu.memberPassword(mode, memberCol);
             }
             while (menu.memberAccess) {
                 menu.memberMenu(mode);
             }
+        //exit video store
         } else if (mode == 0) {
             cout << "Exiting video store";
             return 0;
