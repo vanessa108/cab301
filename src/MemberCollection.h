@@ -11,7 +11,7 @@ class MemberCollection {
 public:
     
     Member members[15];     //array of members
-    int totalMembers = 3;   //total number of members stored, used for indexing array
+    int totalMembers = 4;   //total number of members stored, used for indexing array
 
     // registers a new member and adds to member collection
     void registerMember();

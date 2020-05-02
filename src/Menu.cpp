@@ -59,6 +59,7 @@ int Menu::staffMenu(int &mode){
     cin>>input;
     switch(input) {
         case '1':
+            return 1;
             break;
         case '2':
             //return 2;

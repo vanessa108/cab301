@@ -11,6 +11,7 @@ using std::cout; using std::endl; using std::cin;
 bool videoStore = true; //program running
 Menu menu; // initialise menu class
 MemberCollection memberCol; //initialise member class
+MovieCollection movieCol; //initialise movie class
 
 void importData(); 
 
@@ -28,9 +29,12 @@ int main() {
             while (menu.staffAccess) {
                 // display and retrieve input from staff menu
                 int staffMode = menu.staffMenu(mode);
+                if (staffMode == 1) {
+                    movieCol.addMovie();
+                }
                 if (staffMode == 3) {
                     memberCol.registerMember();
-                }
+                } 
 
             }
            
@@ -73,6 +77,14 @@ void importData() {
         "Alan",
         "Yu",
         "Address 3",
+        "12345678",
+        "1111"
+    );
+
+    memberCol.members[3] = Member(
+        "Riva",
+        "Mendoza",
+        "Address 4",
         "12345678",
         "1111"
     );
