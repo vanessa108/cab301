@@ -30,7 +30,7 @@ int main() {
                 // display and retrieve input from staff menu
                 int staffMode = menu.staffMenu(mode);
                 if (staffMode == 1) {
-                    movieCol.allMovies.root->data.displayInfo();
+                    movieCol.allMovies.inOrder();
                 } 
                 if (staffMode == 2) {
 
@@ -68,6 +68,22 @@ void importData() {
         100, 200, 4
     );
     movieCol.allMovies.insertMovie(newMovie);
+
+    Movie newMovie2 = Movie(
+        "Movie 2", 
+        "A1", "D1",
+        1, 2, 
+        100, 200, 4
+    );
+    movieCol.allMovies.insertMovie(newMovie2);
+
+        Movie newMovie3 = Movie(
+        "A movie", 
+        "A1", "D1",
+        1, 2, 
+        100, 200, 4
+    );
+    movieCol.allMovies.insertMovie(newMovie3);
 
     memberCol.members[0] = Member(
         "Vanessa",
