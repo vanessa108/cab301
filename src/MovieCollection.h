@@ -22,10 +22,9 @@ public:
     void removeMovie();
     void displayAllInfo();
     void displayTopTen();
-private:
     //BST functions
     MovieNode root;
-    void insertMovie(Movie newMovie, MovieNode root);
+    void insertMovie(Movie newMovie, MovieNode * root);
     void findMovie();
     void deleteMovie();
 

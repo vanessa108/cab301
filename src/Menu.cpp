@@ -62,7 +62,7 @@ int Menu::staffMenu(int &mode){
             return 1;
             break;
         case '2':
-            //return 2;
+            return 2;
             break;
         case '3':
             return 3;

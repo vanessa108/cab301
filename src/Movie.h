@@ -13,11 +13,12 @@ public:
     }
     // initialise with values
     Movie(string _title, string _actors, string _directors, int _genre, int _classification, 
-    int _duration, int _releaseDate):
+    int _duration, int _releaseDate, int _numCopies):
     title{_title}, 
     actors{_actors}, directors{_directors},
     genre{_genre}, classification{_classification},
-    duration{_duration}, releaseDate{_releaseDate} {
+    duration{_duration}, releaseDate{_releaseDate},
+    numAvailable{_numCopies} {
 
     }
 
@@ -26,12 +27,12 @@ public:
     int numCopies;
     int numAvailable;
     int numTimesBorrowed;
+    string title;
 
 
 private:
     string getGenre(int code);
     string getClassification(int code);
-    string title;
     string actors;
     string directors;
     int genre;
