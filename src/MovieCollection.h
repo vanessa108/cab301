@@ -3,38 +3,27 @@
 
 #include <string.h>
 #include <iostream>
-#include "Movie.h"
+//#include "Movie.h"
+#include "MovieBST.h"
 
 using std::cout; using std::endl; using std::cin; using std::string;
-
-class MovieNode {
-public:
-    Movie data;
-    MovieNode * left;
-    MovieNode * right; 
-
-};
 
 
 class MovieCollection {
 public:
+    MovieBST allMovies;
+
     void addMovie();
     void removeMovie();
     void displayAllInfo();
     void displayTopTen();
-    //BST functions
-    MovieNode root;
-    void insertMovie(Movie newMovie, MovieNode * root);
-    void findMovie();
-    void deleteMovie();
+    
 
+private:
     // menu and user input functions
     string dataEntry(string dataName);
     int getGenre();
     int getClassification();
-
-
-
 };
 
 

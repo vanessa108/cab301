@@ -26,7 +26,7 @@ public:
         
     int numCopies;
     int numAvailable;
-    int numTimesBorrowed;
+    int numTimesBorrowed = 0;
     string title;
 
 

@@ -2,33 +2,8 @@
 #include<iostream>
 
 #include "MovieCollection.h"
-#include "Movie.h"
+//#include "Movie.h"
 using std::string; using std::cout; using std::endl;
-
-void MovieCollection::insertMovie(Movie newMovie, MovieNode * root) {
-    if (root == NULL) {
-        root->data = newMovie;
-        root->left = NULL;
-        root->right = NULL;
-    } else {
-        string currentTitle = root->data.title;
-        string newTitle = newMovie.title;
-        //int loopSize = std::max(currentTitle.size(), newTitle.size());
-        int titleComparison = strcmpi(currentTitle.c_str(), newTitle.c_str());
-        if (titleComparison < 0) {
-            //put movie on right
-            insertMovie(newMovie, root->right);
-        } else if (titleComparison > 0) {
-            //movie on right
-            insertMovie(newMovie, root->left);
-        } 
-
-    }
-}
-
-
-
-
 
 
 void MovieCollection::addMovie() {
