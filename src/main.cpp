@@ -33,10 +33,7 @@ int main() {
                     movieCol.addMovie();
                 } 
                 if (staffMode == 2) {
-                    Movie * movieResult = movieCol.allMovies.findMovie("Movie 5");
-                    if (movieResult == nullptr) {
-                        cout << "No movie found";
-                    }
+                    movieCol.allMovies.inOrder();
                 }
                 if (staffMode == 3) {
                     memberCol.registerMember();

@@ -13,6 +13,7 @@ void Movie::displayInfo() {
     cout << "Duration: " << duration << endl;
     cout << "Release Date: " << releaseDate << endl;
     cout << "Copies Available: " << numAvailable << endl;
+    cout << "Total Copies: " << numCopies << endl;
     cout << "Times Rented: " << numTimesBorrowed << endl;
 
 }

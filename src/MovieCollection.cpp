@@ -11,24 +11,35 @@ void MovieCollection::addMovie() {
     cout << endl;
     cin.ignore();
     string title = dataEntry("movie title");
-    // check if movie exists
-    string actors = dataEntry("starring actor(s)");
-    string directors = dataEntry("director(s)");
-    int genre = getGenre();
-    int classification = getClassification();
-    cout << endl; cin.ignore();
-    string durS = dataEntry("duration (minutes)");
-    string relDateS = dataEntry("release date (year)");
-    string numCopS = dataEntry("number of copies available");
-    cout << endl;
-    int duration = std::stoi(durS);
-    int releaseDate = std::stoi(relDateS);
-    int numCopies = std::stoi(numCopS);
+    Movie * existingMovie = allMovies.findMovie(title);
+    if (existingMovie != nullptr) {
+        int numAddCopies = 0;
+        cout << "How many copies would you like to add?: ";
+        std::cin >> numAddCopies;
+        existingMovie->numCopies += numAddCopies;
+        cout << "Added " <<numAddCopies << " new copies of "<< title <<". " << existingMovie->numCopies <<" copies in total."<< endl;
+        
+    } else {
+        string actors = dataEntry("starring actor(s)");
+        string directors = dataEntry("director(s)");
+        int genre = getGenre();
+        int classification = getClassification();
+        cout << endl; cin.ignore();
+        string durS = dataEntry("duration (minutes)");
+        string relDateS = dataEntry("release date (year)");
+        string numCopS = dataEntry("number of copies available");
+        cout << endl;
+        int duration = std::stoi(durS);
+        int releaseDate = std::stoi(relDateS);
+        int numCopies = std::stoi(numCopS);
 
-    allMovies.insertMovie( 
-        Movie(title, actors, directors, genre, classification, duration,
-        releaseDate, numCopies)
-    );
+        allMovies.insertMovie( 
+            Movie(title, actors, directors, genre, classification, duration,
+            releaseDate, numCopies)
+        );
+
+    }
+
 
 }
 

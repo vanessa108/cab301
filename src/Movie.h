@@ -18,7 +18,7 @@ public:
     actors{_actors}, directors{_directors},
     genre{_genre}, classification{_classification},
     duration{_duration}, releaseDate{_releaseDate},
-    numAvailable{_numCopies} {
+    numCopies{_numCopies}, numAvailable{_numCopies}{
 
     }
 
