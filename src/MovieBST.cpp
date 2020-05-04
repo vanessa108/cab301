@@ -27,3 +27,37 @@ void MovieBST::_insertMovie(Movie newMovie, MovieNode * &node) {
         }        
     }
 }
+
+void MovieBST::inOrder() {
+    _inOrder(root);
+}
+
+void MovieBST::_inOrder(MovieNode * &root) {
+    if (root != nullptr) {
+        _inOrder(root->left);
+        root->data.displayInfo();
+        cout << endl;
+        _inOrder(root->right);
+    }
+} 
+
+Movie * MovieBST::findMovie(string movieTitle) {
+    return &_findMovie(movieTitle, root)->data;
+
+}
+
+MovieNode *& MovieBST::_findMovie(string movieTitle, MovieNode * &node) {
+    if (node == nullptr or node->data.title == movieTitle) {
+        return node;
+    } else {
+        string currentTitle = node->data.title;
+        int titleComparison = strcmpi(currentTitle.c_str(), movieTitle.c_str());
+        if (titleComparison < 0) {
+            //put movie on right
+            return _findMovie(movieTitle, node->right);
+        } else {
+            //movie on right
+            return _findMovie(movieTitle, node->left);
+        }        
+    }
+}

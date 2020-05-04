@@ -30,10 +30,13 @@ int main() {
                 // display and retrieve input from staff menu
                 int staffMode = menu.staffMenu(mode);
                 if (staffMode == 1) {
-                    movieCol.allMovies.inOrder();
+                    movieCol.addMovie();
                 } 
                 if (staffMode == 2) {
-
+                    Movie * movieResult = movieCol.allMovies.findMovie("Movie 5");
+                    if (movieResult == nullptr) {
+                        cout << "No movie found";
+                    }
                 }
                 if (staffMode == 3) {
                     memberCol.registerMember();
@@ -61,13 +64,12 @@ int main() {
 }
  
 void importData() {
-    Movie newMovie = Movie(
+    movieCol.allMovies.insertMovie(Movie(
         "Movie 1", 
         "A1", "D1",
         1, 2, 
         100, 200, 4
-    );
-    movieCol.allMovies.insertMovie(newMovie);
+    ));
 
     Movie newMovie2 = Movie(
         "Movie 2", 

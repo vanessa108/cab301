@@ -2,6 +2,7 @@
 #include<iostream>
 
 #include "MovieCollection.h"
+#include "Movie.h"
 //#include "Movie.h"
 using std::string; using std::cout; using std::endl;
 
@@ -10,14 +11,12 @@ void MovieCollection::addMovie() {
     cout << endl;
     cin.ignore();
     string title = dataEntry("movie title");
-    // check if movie exits
-
+    // check if movie exists
     string actors = dataEntry("starring actor(s)");
     string directors = dataEntry("director(s)");
-    getGenre();
-    getClassification();
-    cout << endl;
-    cin.ignore();
+    int genre = getGenre();
+    int classification = getClassification();
+    cout << endl; cin.ignore();
     string durS = dataEntry("duration (minutes)");
     string relDateS = dataEntry("release date (year)");
     string numCopS = dataEntry("number of copies available");
@@ -25,6 +24,11 @@ void MovieCollection::addMovie() {
     int duration = std::stoi(durS);
     int releaseDate = std::stoi(relDateS);
     int numCopies = std::stoi(numCopS);
+
+    allMovies.insertMovie( 
+        Movie(title, actors, directors, genre, classification, duration,
+        releaseDate, numCopies)
+    );
 
 }
 

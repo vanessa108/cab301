@@ -20,11 +20,19 @@ public:
     //default empty initialiser
     MovieBST(): root{nullptr} {}
     MovieNode * root;
-
+    // add movie to tree
     void insertMovie(Movie newMovie);
+    //displays movie in order
+    void inOrder();
+    // Returns pointer to a movie with given movie title
+    // Null pointer if no movie is found
+    Movie * findMovie(string movieTitle);
 private:
+    //helper function to pass local private root
+    MovieNode *& _findMovie(string movieTitle, MovieNode * &node);
     void _insertMovie(Movie newMovie, MovieNode * &node);
-    void findMovie();
+    void _inOrder(MovieNode * &root);
+    
     void deleteMovie();
 
 };
