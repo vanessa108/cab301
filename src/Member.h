@@ -7,13 +7,14 @@
 
 using std::cout; using std::endl; using std::cin; using std::string;
 
+/* Represents a member */ 
 class Member {
 public:
-    // default initialiser when first initialising MemberCollection array
+    /* default initialiser */
     Member() {
 
     }
-    // initialise when a new member is added
+    /* intialises with values when a member is registered */
     Member(string _firstName, string _lastName, string _address, string _phoneNum, string _pwd) 
         :lastName{_lastName}, 
         firstName{_firstName}, 

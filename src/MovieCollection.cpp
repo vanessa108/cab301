@@ -11,15 +11,17 @@ void MovieCollection::addMovie() {
     cout << endl;
     cin.ignore();
     string title = dataEntry("movie title");
+    // pointer to movie object in BST (null ptr if it does not exist)
     Movie * existingMovie = allMovies.findMovie(title);
-    if (existingMovie != nullptr) {
+    if (existingMovie != nullptr) { //if movie exists
         int numAddCopies = 0;
         cout << "How many copies would you like to add?: ";
         std::cin >> numAddCopies;
         existingMovie->numCopies += numAddCopies;
         cout << "Added " <<numAddCopies << " new copies of "<< title <<". " << existingMovie->numCopies <<" copies in total."<< endl;
-        
+
     } else {
+        // retrieve information about the movie 
         string actors = dataEntry("starring actor(s)");
         string directors = dataEntry("director(s)");
         int genre = getGenre();
@@ -32,18 +34,14 @@ void MovieCollection::addMovie() {
         int duration = std::stoi(durS);
         int releaseDate = std::stoi(relDateS);
         int numCopies = std::stoi(numCopS);
-
+        //add movie to the BST
         allMovies.insertMovie( 
             Movie(title, actors, directors, genre, classification, duration,
             releaseDate, numCopies)
         );
 
     }
-
-
 }
-
-
 
 string MovieCollection::dataEntry(string dataName) {
     string input;
@@ -64,7 +62,6 @@ int MovieCollection::getGenre() {
     } else {
         return 10;
     }
-
 }
 
 int MovieCollection::getClassification() {
@@ -78,5 +75,4 @@ int MovieCollection::getClassification() {
     } else {
         return 10;
     }
-
 }

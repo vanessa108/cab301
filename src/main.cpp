@@ -16,11 +16,18 @@ MovieCollection movieCol; //initialise movie class
 void importData(); 
 
 int main() {
+    cout << "Importing sample data... press any key to continue";
     importData(); //import data
+    cout << endl;
     cin.ignore();
+    //cout << "Importing sample data...";
     // video store modes, -1 = main menu, 1 = staff mode, 2 = member mode, 3 = exit video store
     int mode = -1;
     while (videoStore) {
+
+        /******************************************
+         *         Staff menu functionality 
+         * ****************************************/
         if (mode == 1) {
             if (!menu.staffAccess) {
                 // retrieve and validate staff login
@@ -33,14 +40,16 @@ int main() {
                     movieCol.addMovie();
                 } 
                 if (staffMode == 2) {
+                    //display all movies in alphabetical order
                     movieCol.allMovies.inOrder();
                 }
                 if (staffMode == 3) {
                     memberCol.registerMember();
                 } 
-
             }
-           
+         /******************************************
+         *         Member menu functionality 
+         * ****************************************/          
         } else if (mode == 2) {
             // retrieve and validate member login
             if (!menu.memberAccess) {
@@ -49,7 +58,9 @@ int main() {
             while (menu.memberAccess) {
                 menu.memberMenu(mode);
             }
-        //exit video store
+
+
+        /** exit video store **/
         } else if (mode == 0) {
             cout << "Exiting video store";
             return 0;

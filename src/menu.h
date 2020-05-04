@@ -4,20 +4,24 @@
 #include<iostream>
 #include "MemberCollection.h"
 
+
 class Menu {
 public:
     int mainMenu();
 
     int staffMenu(int &mode);
-    //validates staff menu
+    
+    /* Checks staff log in */
     void staffPassword(int &mode);
-    // When staff logs in, staff access is true until staff returns to main menu
+    /* StaffAccess stays true until staff member returns to main menu */
     bool staffAccess = false; 
-
-    //validates member password 
+    
     void memberMenu(int & mode);
+
+    /* Checks member log in */
     void memberPassword(int &mode, MemberCollection &memberCol);
-    // When member logs in, member access is true until member returns to main menu
+    
+    /* StaffAccess stays true until staff member returns to main menu */
     bool memberAccess = false; 
     
 private:

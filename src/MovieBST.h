@@ -4,34 +4,60 @@
 #include "Movie.h"
 #include "MovieCollection.h"
 
+/* Represents a node containing a movie */
 class MovieNode {
 public:
+    /* movie object */
     Movie data;
+    /* Pointers to left and right nodes */
     MovieNode * left;
     MovieNode * right;
-    //initialiser
+    /* Default initialise with movie object and null pointers */
     MovieNode(Movie data): 
     data{data}, left{nullptr}, right{nullptr} {}
-
 };
 
+/* Represents a binary search tree that stores all movies */
 class MovieBST {
 public:
-    //default empty initialiser
+    /* Default empty initialiser */
     MovieBST(): root{nullptr} {}
+
+    /* root is a pointer to a movie node */
     MovieNode * root;
-    // add movie to tree
+    
+    /* Public function to insert movie into a tree 
+    *   Input: movie object
+    */
     void insertMovie(Movie newMovie);
-    //displays movie in order
+    
+    /* Public function to display all movies in the tree in alphabetical order */
     void inOrder();
-    // Returns pointer to a movie with given movie title
-    // Null pointer if no movie is found
+
+    /* Public function to find movie 
+    *   Input: string of movie title
+    *   Output: pointer to a movie object, null ptr if no movie found
+    */
     Movie * findMovie(string movieTitle);
 private:
-    //helper function to pass local private root
+    /* Find a movie that matches a given title, called recursively to go down tree
+     *  Input: movie title (string), reference to pointer of movie node
+     *  Output: Reference to a pointer of a movie object
+     */
     MovieNode *& _findMovie(string movieTitle, MovieNode * &node);
+
+    /* Inserts movie into the BST
+     *  Input: movie object, ref to pointer of movie node
+     *  Initially takes root node and then is called recursively 
+     */
     void _insertMovie(Movie newMovie, MovieNode * &node);
+
+    /* Retrieves and prints the movies in the BST in alphabetical order
+     *  Input: ref to pointer of movie node
+     *  Initially takes root node and then is called recursively 
+     */
     void _inOrder(MovieNode * &root);
+    
     
     void deleteMovie();
 
