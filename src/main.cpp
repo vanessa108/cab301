@@ -41,7 +41,7 @@ int main() {
                 } 
                 if (staffMode == 2) {
                     //display all movies in alphabetical order
-                    movieCol.allMovies.inOrder();
+                    movieCol.removeMovie();
                 }
                 if (staffMode == 3) {
                     memberCol.registerMember();

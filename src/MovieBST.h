@@ -59,7 +59,7 @@ private:
     void _inOrder(MovieNode * &root);
     
     
-    void deleteMovie();
+    void _deleteMovie(MovieNode * &root);
 
 };
 

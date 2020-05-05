@@ -43,6 +43,26 @@ void MovieCollection::addMovie() {
     }
 }
 
+void MovieCollection::removeMovie() {
+    cin.ignore();
+    string title = dataEntry("title of the movie you would like remove");
+    Movie * existingMovie = allMovies.findMovie(title);
+    if (existingMovie == nullptr) {
+        cout << "Movie not found. ";
+    } else {
+        cout << "There are currently " << existingMovie->numCopies << " copies of " << title <<"." <<endl;
+        cout << "Enter the number of copies to remove: ";
+        int numToRemove;
+        cin >> numToRemove;
+        if (numToRemove >= existingMovie->numCopies) {
+
+        } else {
+            existingMovie->numCopies -= numToRemove;
+             cout << "Removed " <<numToRemove << " copies of "<< title <<". There are now " << existingMovie->numCopies <<" copies in total."<< endl;
+        }
+    }
+}
+
 string MovieCollection::dataEntry(string dataName) {
     string input;
     cout << "Enter the " + dataName + ": ";

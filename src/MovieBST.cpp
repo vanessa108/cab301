@@ -61,3 +61,6 @@ MovieNode *& MovieBST::_findMovie(string movieTitle, MovieNode * &node) {
         }        
     }
 }
+
+void MovieBST::_deleteMovie(MovieNode * &node) {
+}
