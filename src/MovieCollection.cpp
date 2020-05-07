@@ -6,6 +6,9 @@
 //#include "Movie.h"
 using std::string; using std::cout; using std::endl;
 
+void MovieCollection::displayAllMovies() {
+    allMovies.inOrder();
+}
 
 void MovieCollection::addMovie() {
     cout << endl;

@@ -52,11 +52,19 @@ int main() {
          * ****************************************/          
         } else if (mode == 2) {
             // retrieve and validate member login
+            Member * currentMember = nullptr;
             if (!menu.memberAccess) {
                 menu.memberPassword(mode, memberCol);
-            }
+            } 
+                
             while (menu.memberAccess) {
-                menu.memberMenu(mode);
+                int memberMode = menu.memberMenu(mode);
+                if (memberMode == 1) {
+                    movieCol.displayAllMovies();
+                }
+                if (memberMode == 2) {
+                    cout << currentMember->firstName;
+                }
             }
 
 

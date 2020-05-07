@@ -101,7 +101,7 @@ void Menu::memberPassword(int &mode, MemberCollection &memberCol) {
 
 }
 
-void Menu::memberMenu(int &mode){
+int Menu::memberMenu(int &mode){
 
     cout << "\n=========Member Menu==========" << endl;
     cout << "1. Display all movies" << endl;
@@ -116,18 +116,19 @@ void Menu::memberMenu(int &mode){
     cin>>input;
     switch(input) {
         case '1':
+            return 1;
             break;
         case '2':
-            //return 2;
+            return 2;
             break;
         case '3':
-            //return 2;
+            return 3;
             break;
         case '4':
-            //return 2;
+            return 4;
             break;
         case '5':
-            //return 2;
+            return 5;
             break;
         case '0':
             memberAccess = false;
@@ -138,4 +139,5 @@ void Menu::memberMenu(int &mode){
             break;
             //return -1;
     }
+    return 0;
 }

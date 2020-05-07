@@ -23,6 +23,7 @@ public:
     bool checkMemberPassword(string username, string password);
 
     // not implemented
+    Member * findMember(string firstname, string lastname);
     void findMemberPhone();
     void borrowMovie();
     void returnMovie();

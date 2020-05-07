@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include "MemberCollection.h"
+#include "Member.h"
 
 
 class Menu {
@@ -16,7 +17,7 @@ public:
     /* StaffAccess stays true until staff member returns to main menu */
     bool staffAccess = false; 
     
-    void memberMenu(int & mode);
+    int memberMenu(int & mode);
 
     /* Checks member log in */
     void memberPassword(int &mode, MemberCollection &memberCol);

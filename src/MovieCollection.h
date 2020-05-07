@@ -5,6 +5,7 @@
 #include <iostream>
 //#include "Movie.h"
 #include "MovieBST.h"
+#include "Member.h"
 
 using std::cout; using std::endl; using std::cin; using std::string;
 
@@ -17,10 +18,11 @@ public:
     /** Function: takes in user inputs to add a new movie 
     *      If the movie title already exists, the number of copies can be altered */
     void addMovie();
-
     void removeMovie();
-    void displayAllInfo();
+    void displayAllMovies();
+    void displayBorrowed(); 
     void displayTopTen();
+    void borrowMovie();
     
 
 private:

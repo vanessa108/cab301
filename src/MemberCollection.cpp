@@ -5,6 +5,19 @@
 
 using std::cout; using std::endl; using std::cin; using std::string;
 
+Member * MemberCollection::findMember(string firstName, string lastName) {
+    for (int i = 0; i < totalMembers; i++) {
+        Member &registeredMem = members[i];
+        if (firstName == registeredMem.firstName and lastName == registeredMem.lastName) {
+            Member * pointerToMember = &registeredMem;
+            return pointerToMember;
+        } else {
+            return nullptr;
+        }
+    }
+    return nullptr;
+}
+
 void MemberCollection::registerMember() {
     cin.ignore();
     string firstName = dataEntry("first name");
@@ -66,16 +79,16 @@ bool MemberCollection::checkMemberPassword(string username, string password) {
     }
     lastName = username.substr(0, caps);
     firstName = username.substr(caps); 
-    /** Check if user exists, if so check that the password is correct**/
-    for (int i = 0; i < totalMembers; i++) {
-        Member registeredMem = members[i];
-        if (firstName == registeredMem.firstName and lastName == registeredMem.lastName) {
-            if (password == registeredMem.pwd) {
-                return true;
-            } else {
-                cout << "Incorrect password, ";
-                return false;
-            }
+
+    Member * existingMember = findMember(firstName, lastName);
+
+    if (existingMember != nullptr) {
+        if (existingMember->pwd == password) {
+            return true;
+        } else {
+            cout << existingMember->pwd << endl;
+            cout << "Incorrect password, ";
+            return false;
         }
     }
     cout << "Invalid username, ";
