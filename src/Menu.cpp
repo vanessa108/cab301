@@ -87,7 +87,6 @@ void Menu::memberPassword(int &mode, MemberCollection &memberCol, Member &curren
     cout << "Username: "; cin >> username;
     cout << "Password: "; cin >> password;
     if (memberCol.checkMemberPassword(username, password, currentMember)) {
-        //cout << currentMember.firstName;
         memberAccess = true;
     } else {
         cout << "select 1 to try again or 0 to return to the main menu" << endl;

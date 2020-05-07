@@ -6,6 +6,22 @@
 //#include "Movie.h"
 using std::string; using std::cout; using std::endl;
 
+void MovieCollection::borrowMovie(Member & currentMember) {
+    cin.ignore();
+    string title = dataEntry("title of the movie you would like to borrow");
+    Movie * movie = allMovies.findMovie(title);
+    if (movie != nullptr) {
+        if (movie->numAvailable > 0) {
+            ++currentMember.moviesHeld[title];
+            movie->numAvailable -= 1;
+        } else {
+            cout << "No copies of " << title <<" available." << endl;
+        }               
+    } else {
+        cout << "Movie does not exist." << endl;
+    }
+}
+
 void MovieCollection::displayAllMovies() {
     allMovies.inOrder();
 }
@@ -21,6 +37,7 @@ void MovieCollection::addMovie() {
         cout << "How many copies would you like to add?: ";
         std::cin >> numAddCopies;
         existingMovie->numCopies += numAddCopies;
+        existingMovie->numAvailable += numAddCopies;
         cout << "Added " <<numAddCopies << " new copies of "<< title <<". " << existingMovie->numCopies <<" copies in total."<< endl;
 
     } else {
@@ -61,6 +78,7 @@ void MovieCollection::removeMovie() {
 
         } else {
             existingMovie->numCopies -= numToRemove;
+            existingMovie->numAvailable -= numToRemove;
              cout << "Removed " <<numToRemove << " copies of "<< title <<". There are now " << existingMovie->numCopies <<" copies in total."<< endl;
         }
     }

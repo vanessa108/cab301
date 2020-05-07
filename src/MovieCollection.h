@@ -22,7 +22,7 @@ public:
     void displayAllMovies();
     void displayBorrowed(); 
     void displayTopTen();
-    void borrowMovie();
+    void borrowMovie(Member & currentMember);
     
 
 private:

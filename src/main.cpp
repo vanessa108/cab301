@@ -63,8 +63,13 @@ int main() {
                     movieCol.displayAllMovies();
                 }
                 if (memberMode == 2) {
-                    currentMember.firstName = "Chicken";
-                    cout << currentMember.firstName;
+                    movieCol.borrowMovie(currentMember);
+                }
+                if (memberMode == 4) {
+                    for (const auto &movie : currentMember.moviesHeld) {
+                        cout << movie.first << ": " << movie.second << endl;
+                    }
+
                 }
             }
 
