@@ -67,7 +67,7 @@ bool MemberCollection::passwordValidation(string pwd) {
     }
 }
 
-bool MemberCollection::checkMemberPassword(string username, string password) {
+bool MemberCollection::checkMemberPassword(string username, string password, Member & currentMember) {
     /** Split username into first name and last name **/
     string firstName; string lastName;
     int caps; //find capital letter to split username into first and last name
@@ -84,6 +84,7 @@ bool MemberCollection::checkMemberPassword(string username, string password) {
 
     if (existingMember != nullptr) {
         if (existingMember->pwd == password) {
+            currentMember = *existingMember;
             return true;
         } else {
             cout << existingMember->pwd << endl;

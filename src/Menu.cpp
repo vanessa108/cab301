@@ -82,12 +82,12 @@ int Menu::staffMenu(int &mode){
     return 0;
 }
 
-void Menu::memberPassword(int &mode, MemberCollection &memberCol) {
+void Menu::memberPassword(int &mode, MemberCollection &memberCol, Member &currentMember) {
     string username; string password;
     cout << "Username: "; cin >> username;
     cout << "Password: "; cin >> password;
-
-    if (memberCol.checkMemberPassword(username, password)) {
+    if (memberCol.checkMemberPassword(username, password, currentMember)) {
+        //cout << currentMember.firstName;
         memberAccess = true;
     } else {
         cout << "select 1 to try again or 0 to return to the main menu" << endl;
@@ -95,7 +95,7 @@ void Menu::memberPassword(int &mode, MemberCollection &memberCol) {
         if (input == 0) {
             mode = -1;
         } else if (input == 1){
-            memberPassword(mode, memberCol);
+            memberPassword(mode, memberCol, currentMember);
         }   
     }
 

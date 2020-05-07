@@ -20,7 +20,7 @@ public:
 
     /* Validates a members login details 
     *   Output: true if username/password matches */
-    bool checkMemberPassword(string username, string password);
+    bool checkMemberPassword(string username, string password, Member & currentMember);
 
     // not implemented
     Member * findMember(string firstname, string lastname);
