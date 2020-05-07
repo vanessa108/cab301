@@ -14,6 +14,7 @@ void MovieCollection::borrowMovie(Member & currentMember) {
         if (movie->numAvailable > 0) {
             ++currentMember.moviesHeld[title];
             movie->numAvailable -= 1;
+            movie->numTimesBorrowed += 1;
         } else {
             cout << "No copies of " << title <<" available." << endl;
         }               

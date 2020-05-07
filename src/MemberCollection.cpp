@@ -7,13 +7,10 @@ using std::cout; using std::endl; using std::cin; using std::string;
 
 Member * MemberCollection::findMember(string firstName, string lastName) {
     for (int i = 0; i < totalMembers; i++) {
-        Member &registeredMem = members[i];
+        Member registeredMem = members[i];
         if (firstName == registeredMem.firstName and lastName == registeredMem.lastName) {
-            Member * pointerToMember = &registeredMem;
-            return pointerToMember;
-        } else {
-            return nullptr;
-        }
+            return &members[i];
+        } 
     }
     return nullptr;
 }
