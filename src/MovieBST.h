@@ -39,6 +39,11 @@ public:
     *   Output: pointer to a movie object, null ptr if no movie found
     */
     Movie * findMovie(string movieTitle);
+
+    int treeSize();
+
+    void treeToArray(Movie mostBorowed[]);
+     
 private:
     /* Find a movie that matches a given title, called recursively to go down tree
      *  Input: movie title (string), reference to pointer of movie node
@@ -58,7 +63,9 @@ private:
      */
     void _inOrder(MovieNode * &root);
     
-    
+    int _treeSize(MovieNode * &root);
+
+    int _treeToArray(Movie mostBorrowed[], MovieNode * &node, int i);
     void _deleteMovie(MovieNode * &root);
 
 };

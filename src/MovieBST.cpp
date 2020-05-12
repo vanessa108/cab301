@@ -62,5 +62,34 @@ MovieNode *& MovieBST::_findMovie(string movieTitle, MovieNode * &node) {
     }
 }
 
+int MovieBST::treeSize() {
+    return _treeSize(root);
+}
+
+int MovieBST::_treeSize(MovieNode * &node) {
+    if (node == nullptr) {
+        return 0;
+    } else {
+        return (_treeSize(node->left) + 1 + _treeSize(node->right));
+    }
+}
+void MovieBST::treeToArray(Movie mostBorrowed[]) {
+    _treeToArray(mostBorrowed, root, 0);
+}
+int MovieBST::_treeToArray(Movie mostBorrowed[], MovieNode * &node, int i) {
+    if (node == nullptr) {return 0;}
+    mostBorrowed[i] = node->data;
+    i++;
+    if (node->left != nullptr) {
+        i = _treeToArray(mostBorrowed, node->left, i);
+    }
+    if (node->right != nullptr) {
+        i = _treeToArray(mostBorrowed, node->right, i);
+    }
+    return i;
+
+}
+
 void MovieBST::_deleteMovie(MovieNode * &node) {
+
 }

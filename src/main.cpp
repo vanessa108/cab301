@@ -49,7 +49,8 @@ int main() {
             }
          /******************************************
          *         Member menu functionality 
-         * ****************************************/          
+         * ****************************************/         
+        
         } else if (mode == 2) {
             // retrieve and validate member login
             Member currentMember; 
@@ -65,14 +66,17 @@ int main() {
                 if (memberMode == 2) {
                     movieCol.borrowMovie(currentMember);
                 }
+                if (memberMode == 3) {
+                    movieCol.returnMovie(currentMember);
+                }
                 if (memberMode == 4) {
-                    for (const auto &movie : currentMember.moviesHeld) {
-                        cout << movie.first << ": " << movie.second << endl;
-                    }
+                    memberCol.listMemberMovies(currentMember);
+                }
 
+                if (memberMode == 5) {
+                    movieCol.movieArray();
                 }
             }
-
 
         /** exit video store **/
         } else if (mode == 0) {

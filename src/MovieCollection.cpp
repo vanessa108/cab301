@@ -6,15 +6,23 @@
 //#include "Movie.h"
 using std::string; using std::cout; using std::endl;
 
+void MovieCollection::movieArray() {
+    allMovies.treeToArray(mostBorrowed);
+    for (int i = 0; i < 15; i++) {
+        cout << mostBorrowed[i].title;
+    }
+}
+
 void MovieCollection::borrowMovie(Member & currentMember) {
     cin.ignore();
     string title = dataEntry("title of the movie you would like to borrow");
     Movie * movie = allMovies.findMovie(title);
     if (movie != nullptr) {
         if (movie->numAvailable > 0) {
-            ++currentMember.moviesHeld[title];
+            currentMember.moviesHeld.insert(title);
             movie->numAvailable -= 1;
             movie->numTimesBorrowed += 1;
+            cout << "You have borrowed a copy of " << title << ". " << endl;
         } else {
             cout << "No copies of " << title <<" available." << endl;
         }               
@@ -23,7 +31,22 @@ void MovieCollection::borrowMovie(Member & currentMember) {
     }
 }
 
+void MovieCollection::returnMovie(Member & currentMember) {
+    cin.ignore();
+    string title = dataEntry("title of the movie you would like to return");
+    if (currentMember.moviesHeld.count(title) > 0) {
+        currentMember.moviesHeld.erase(title);
+        Movie * movie = allMovies.findMovie(title);
+        movie-> numAvailable += 1;
+        cout << "You have returned " << title << ". " << endl;
+    } else {
+        cout << "You have no copies of " << title << " withheld." << endl;
+    }
+
+}
+
 void MovieCollection::displayAllMovies() {
+    // in order traversal to display movies in alphabetical order
     allMovies.inOrder();
 }
 

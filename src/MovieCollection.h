@@ -14,7 +14,15 @@ class MovieCollection {
 public:
     /* binary search tree that stores all movies */
     MovieBST allMovies;
-    
+
+    // struct movieBorrowNum {
+    //     int numBorrowed;
+    //     string movieTitle;
+    // };
+    // movieBorrowNum mostBorrowed[15];
+    Movie mostBorrowed[15];
+
+    void movieArray();
     /** Function: takes in user inputs to add a new movie 
     *      If the movie title already exists, the number of copies can be altered */
     void addMovie();
@@ -23,6 +31,7 @@ public:
     void displayBorrowed(); 
     void displayTopTen();
     void borrowMovie(Member & currentMember);
+    void returnMovie(Member & currentMember);
     
 
 private:

@@ -1,7 +1,7 @@
 #ifndef MEMBER_h
 #define MEMBER_h
 
-#include <map>
+#include <set>
 #include <string.h>
 #include <iostream>
 
@@ -26,7 +26,7 @@ public:
         
     //data strcture with information about all movies the member is holding
     // key with movie name, size_t with number of copies held
-    std::map<string, size_t> moviesHeld;
+    std::set<string> moviesHeld;
     string lastName;
     string firstName;
     string address;

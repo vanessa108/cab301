@@ -22,13 +22,13 @@ public:
     *   Output: true if username/password matches */
     bool checkMemberPassword(string username, string password, Member & currentMember);
 
-    // not implemented
     Member * findMember(string firstname, string lastname);
-    void findMemberPhone();
-    void borrowMovie();
-    void returnMovie();
-    void listMemberMovies();
     
+    /* List the title and number of copies of movies held by a member
+    *    Input: reference to member location */
+    void listMemberMovies(Member & currentMember);
+    
+    void findMemberPhone();
 
 private:
     /** Helper function for cout/cin data entries

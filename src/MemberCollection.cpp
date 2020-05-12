@@ -5,6 +5,7 @@
 
 using std::cout; using std::endl; using std::cin; using std::string;
 
+
 Member * MemberCollection::findMember(string firstName, string lastName) {
     for (int i = 0; i < totalMembers; i++) {
         Member registeredMem = members[i];
@@ -13,6 +14,16 @@ Member * MemberCollection::findMember(string firstName, string lastName) {
         } 
     }
     return nullptr;
+}
+
+void MemberCollection::listMemberMovies(Member & currentMember) {
+    if (currentMember.moviesHeld.empty()) {
+        cout << "No movies currently borrowed." << endl;
+    } else {
+        for (const auto &movie : currentMember.moviesHeld) {
+            cout << movie << endl;
+        }
+    }
 }
 
 void MemberCollection::registerMember() {
