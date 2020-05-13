@@ -6,10 +6,16 @@
 //#include "Movie.h"
 using std::string; using std::cout; using std::endl;
 
-void MovieCollection::movieArray() {
-    allMovies.treeToArray(mostBorrowed);
-    for (int i = 0; i < 15; i++) {
-        cout << mostBorrowed[i].title;
+void MovieCollection::mostBorrwowed() {
+    allMovies.treeToArray(movieArray);
+    int numMovies = allMovies.treeSize();
+    Movie sortedMovies[numMovies];
+    for (int i = 0; i < numMovies; i++) {
+        sortedMovies[i] = movieArray[i];
+    }
+    quickSort(sortedMovies, 0, numMovies-1);
+    for (Movie m : sortedMovies) {
+        cout << m.title << " " << m.numTimesBorrowed << endl;
     }
 }
 
@@ -81,7 +87,7 @@ void MovieCollection::addMovie() {
         //add movie to the BST
         allMovies.insertMovie( 
             Movie(title, actors, directors, genre, classification, duration,
-            releaseDate, numCopies)
+            releaseDate, numCopies, 0)
         );
 
     }
@@ -140,4 +146,49 @@ int MovieCollection::getClassification() {
     } else {
         return 10;
     }
+}
+
+void MovieCollection::quickSort(Movie * movies, int l, int r) {
+    if (l < r) {
+        int s = partition(movies, l, r);
+        cout << s << endl;
+        quickSort(movies, l, s-1);
+        quickSort(movies, s+1, r);
+    }
+}
+
+int MovieCollection::partition(Movie * movies, int l, int r) {
+    int p = (movies + l)->numTimesBorrowed;
+    int i = l-1;
+    cout << p << endl;
+    cout << i << endl;
+    int j = r+1;
+    cout << j << endl;
+    while (true) {
+        do {
+            i++;
+            cout << "i: " << i << endl;
+            cout << "num: " << (movies+i)->numTimesBorrowed << endl;
+        } while ((movies + i)->numTimesBorrowed < p);
+        do {
+            j--;
+            cout << "j: " << j << endl;
+            cout << "num: " << (movies+j)->numTimesBorrowed << endl;
+        } while ((movies + j)->numTimesBorrowed > p);
+
+        if (i >= j) {
+            swap((movies + i), (movies + j)); //undo last swap
+            swap((movies + l),(movies + j));
+            return j;
+        } else {
+            swap((movies + i), (movies + j));
+        }
+    }
+}
+
+void MovieCollection::swap(Movie *a, Movie *b) {
+        Movie temp = *a;
+        *a = *b;
+        *b = temp;
+        cout << "swap" << endl;
 }

@@ -15,14 +15,9 @@ public:
     /* binary search tree that stores all movies */
     MovieBST allMovies;
 
-    // struct movieBorrowNum {
-    //     int numBorrowed;
-    //     string movieTitle;
-    // };
-    // movieBorrowNum mostBorrowed[15];
-    Movie mostBorrowed[15];
+    Movie movieArray[15];
 
-    void movieArray();
+    void mostBorrwowed();
     /** Function: takes in user inputs to add a new movie 
     *      If the movie title already exists, the number of copies can be altered */
     void addMovie();
@@ -45,7 +40,11 @@ private:
     /** Helper function to print out large selection menu for movie classification
      *  returns int of user selection **/
     int getClassification();
+    /** Hoare's partitioning
+     * **/
+    void quickSort(Movie * movies, int l, int r);
+    int partition(Movie * movies, int l, int r);
+    void swap(Movie *a, Movie *b);
+
 };
-
-
 #endif

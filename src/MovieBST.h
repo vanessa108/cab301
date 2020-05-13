@@ -63,7 +63,7 @@ private:
      */
     void _inOrder(MovieNode * &root);
     
-    int _treeSize(MovieNode * &root);
+    int _treeSize(MovieNode * &node);
 
     int _treeToArray(Movie mostBorrowed[], MovieNode * &node, int i);
     void _deleteMovie(MovieNode * &root);

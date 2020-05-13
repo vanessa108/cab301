@@ -15,7 +15,7 @@ public:
 
     /* Initialise movie with values */
     Movie(string _title, string _actors, string _directors, int _genre, int _classification, 
-    int _duration, int _releaseDate, int _numCopies):
+    int _duration, int _releaseDate, int _numCopies, int _numTimesBorrowed):
         title{_title}, 
         actors{_actors}, 
         directors{_directors},
@@ -24,7 +24,8 @@ public:
         duration{_duration}, 
         releaseDate{_releaseDate},
         numCopies{_numCopies}, 
-        numAvailable{_numCopies}{
+        numAvailable{_numCopies},
+        numTimesBorrowed{_numTimesBorrowed}{
     }
 
     /* Display all information about the movie */
@@ -33,7 +34,7 @@ public:
     string title;   // unique identifier for a movie
     int numCopies;  
     int numAvailable;
-    int numTimesBorrowed = 0;
+    int numTimesBorrowed;
     
 private:
     /* Helper function to display which genre/classification depending on input selection (int)

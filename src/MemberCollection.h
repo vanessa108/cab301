@@ -13,7 +13,7 @@ public:
     /* Array of members */ 
     Member members[15]; 
     /* total number of members, used to index the array */    
-    int totalMembers = 4; 
+    int totalMembers = 5; 
 
     /* Retrieves member information and inputs member object in a member array */
     void registerMember();

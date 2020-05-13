@@ -74,7 +74,7 @@ int main() {
                 }
 
                 if (memberMode == 5) {
-                    movieCol.movieArray();
+                    movieCol.mostBorrwowed();
                 }
             }
 
@@ -94,24 +94,33 @@ void importData() {
         "Movie 1", 
         "A1", "D1",
         1, 2, 
-        100, 200, 4
+        100, 200, 4, 1
     ));
 
     Movie newMovie2 = Movie(
         "Movie 2", 
         "A1", "D1",
         1, 2, 
-        100, 200, 4
+        100, 200, 4, 3
     );
     movieCol.allMovies.insertMovie(newMovie2);
 
-        Movie newMovie3 = Movie(
+    Movie newMovie3 = Movie(
         "A movie", 
         "A1", "D1",
         1, 2, 
-        100, 200, 4
+        100, 200, 4, 2
     );
     movieCol.allMovies.insertMovie(newMovie3);
+
+    Movie newMovie4 = Movie(
+        "Movie 4", 
+        "A1", "D1",
+        1, 2, 
+        100, 200, 4, 2
+    );
+    movieCol.allMovies.insertMovie(newMovie4);
+
 
     memberCol.members[0] = Member(
         "Vanessa",
@@ -144,6 +153,20 @@ void importData() {
         "1111"
     );
 
+        memberCol.members[3] = Member(
+        "Riva",
+        "Mendoza",
+        "Address 4",
+        "12345678",
+        "1111"
+    );
 
+        memberCol.members[4] = Member(
+        "Maria",
+        "Vargas",
+        "Address 5",
+        "12345678",
+        "1111"
+    );
 }
 
