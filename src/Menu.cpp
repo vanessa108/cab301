@@ -68,7 +68,7 @@ int Menu::staffMenu(int &mode){
             return 3;
             break;
         case '4':
-            //return 2;
+            return 4;
             break;
         case '0':
             staffAccess = false;

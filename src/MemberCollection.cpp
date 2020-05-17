@@ -5,6 +5,18 @@
 
 using std::cout; using std::endl; using std::cin; using std::string;
 
+void MemberCollection::findMemberPhone() {
+    cin.ignore();
+    string firstName = dataEntry("first name");
+    string lastName = dataEntry("last name");
+    Member * searchMember = findMember(firstName, lastName);
+    if (searchMember == nullptr) {
+        cout << "Member does not exist in database." << endl;
+    } else {
+        cout << "Phone number of " << searchMember->firstName << " " << searchMember->lastName << ": " 
+            << searchMember->phoneNum << endl;
+    }
+}
 
 Member * MemberCollection::findMember(string firstName, string lastName) {
     for (int i = 0; i < totalMembers; i++) {

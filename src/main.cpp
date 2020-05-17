@@ -46,6 +46,9 @@ int main() {
                 if (staffMode == 3) {
                     memberCol.registerMember();
                 } 
+                if (staffMode == 4) {
+                    memberCol.findMemberPhone();
+                }
             }
          /******************************************
          *         Member menu functionality 
@@ -80,8 +83,9 @@ int main() {
 
         /** exit video store **/
         } else if (mode == 0) {
-            cout << "Exiting video store";
-            return 0;
+            movieCol.mostBorrwowed();
+            //cout << "Exiting video store";
+            //return 0;
         } else {
             mode = menu.mainMenu();
         }
@@ -92,34 +96,54 @@ int main() {
 void importData() {
     movieCol.allMovies.insertMovie(Movie(
         "Movie 1", 
-        "A1", "D1",
+        "Actor 1", "Director 1",
         1, 2, 
-        100, 200, 4, 1
+        120, 2001, 4, 2
     ));
 
-    Movie newMovie2 = Movie(
+
+    movieCol.allMovies.insertMovie(Movie(
         "Movie 2", 
-        "A1", "D1",
+        "Actor 2", "Director 2",
         1, 2, 
-        100, 200, 4, 3
-    );
-    movieCol.allMovies.insertMovie(newMovie2);
+        70, 2019, 4, 3
+    ));
 
-    Movie newMovie3 = Movie(
-        "A movie", 
-        "A1", "D1",
+    movieCol.allMovies.insertMovie(Movie(
+        "Movie 3", 
+        "Actor 3", "Director 3",
         1, 2, 
-        100, 200, 4, 2
-    );
-    movieCol.allMovies.insertMovie(newMovie3);
+        100, 2019, 4, 10
+    ));
 
-    Movie newMovie4 = Movie(
-        "Movie 4", 
-        "A1", "D1",
+    movieCol.allMovies.insertMovie(Movie(
+        "A Very Interesting Movie", 
+        "Actor", "D1",
         1, 2, 
-        100, 200, 4, 2
-    );
-    movieCol.allMovies.insertMovie(newMovie4);
+        60, 2020, 4, 5
+    ));
+
+    movieCol.allMovies.insertMovie(Movie(
+        "Mulan", 
+        "Ming-Na Wen", "Tony Bancroft, Barry Cook",
+        1, 2, 
+        87, 1998, 4, 2
+    ));
+
+    movieCol.allMovies.insertMovie(Movie(
+        "Aladdin", 
+        "Will  Smith, Mena Massoud", "Guy Ritchie",
+        1, 2, 
+        128, 2019, 4, 9
+    ));
+
+    movieCol.allMovies.insertMovie(Movie(
+        "Tangled", 
+        "Mandy Moore, Zachary Levi", "Byron Howard, Nathan Greno",
+        1, 2, 
+        100, 2010, 4, 9
+    ));
+
 
 
     memberCol.members[0] = Member(
@@ -153,15 +177,7 @@ void importData() {
         "1111"
     );
 
-        memberCol.members[3] = Member(
-        "Riva",
-        "Mendoza",
-        "Address 4",
-        "12345678",
-        "1111"
-    );
-
-        memberCol.members[4] = Member(
+    memberCol.members[4] = Member(
         "Maria",
         "Vargas",
         "Address 5",
