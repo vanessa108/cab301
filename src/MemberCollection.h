@@ -20,13 +20,13 @@ public:
 
     /* Validates a members login details 
     *   Output: true if username/password matches */
-    bool checkMemberPassword(string username, string password, Member & currentMember);
+    bool checkMemberPassword(string username, string password, int &currentMember);
 
-    Member * findMember(string firstname, string lastname);
+    int findMember(string firstname, string lastname);
     
     /* List the title and number of copies of movies held by a member
     *    Input: reference to member location */
-    void listMemberMovies(Member & currentMember);
+    void listMemberMovies(int currentMember);
     
     void findMemberPhone();
 

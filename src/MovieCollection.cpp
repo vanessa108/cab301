@@ -3,31 +3,38 @@
 
 #include "MovieCollection.h"
 #include "Movie.h"
+#include "MemberCollection.h"
 //#include "Movie.h"
 using std::string; using std::cout; using std::endl;
 
 void MovieCollection::mostBorrwowed() {
+    //transfer movies from tree to movie array
     allMovies.treeToArray(movieArray);
+    //find number of movies in tree
     int numMovies = allMovies.treeSize();
+    //create new array for sorted movies
     Movie sortedMovies[numMovies];
     for (int i = 0; i < numMovies; i++) {
         sortedMovies[i] = movieArray[i];
     }
     quickSort(sortedMovies, 0, numMovies-1);
     cout << "Top 10 most borrowed movies:" << endl;
-    for (int i = numMovies-1; i >= 0; i--) {
-        Movie thisMovie = sortedMovies[i];
-        cout << thisMovie.title << ", borrowed " << thisMovie.numTimesBorrowed << " times." << endl;
+    int i = 1; 
+    while (i <= 10 and i <= numMovies) {
+        Movie thisMovie = sortedMovies[numMovies - i];
+        cout << thisMovie.title << ", borrowed " << thisMovie.numTimesBorrowed << " times." << endl; 
+        i++;     
     }
 }
 
-void MovieCollection::borrowMovie(Member & currentMember) {
+void MovieCollection::borrowMovie(int currentMember, MemberCollection & memberCol) {
+    
     cin.ignore();
     string title = dataEntry("title of the movie you would like to borrow");
     Movie * movie = allMovies.findMovie(title);
     if (movie != nullptr) {
         if (movie->numAvailable > 0) {
-            currentMember.moviesHeld.insert(title);
+            memberCol.members[currentMember].moviesHeld.insert(title);
             movie->numAvailable -= 1;
             movie->numTimesBorrowed += 1;
             cout << "You have borrowed a copy of " << title << ". " << endl;
@@ -39,11 +46,12 @@ void MovieCollection::borrowMovie(Member & currentMember) {
     }
 }
 
-void MovieCollection::returnMovie(Member & currentMember) {
+void MovieCollection::returnMovie(int currentMember, MemberCollection & memberCol) {
     cin.ignore();
     string title = dataEntry("title of the movie you would like to return");
-    if (currentMember.moviesHeld.count(title) > 0) {
-        currentMember.moviesHeld.erase(title);
+    Member thisMember = memberCol.members[currentMember];
+    if (thisMember.moviesHeld.count(title) > 0) {
+        memberCol.members[currentMember].moviesHeld.erase(title);
         Movie * movie = allMovies.findMovie(title);
         movie-> numAvailable += 1;
         cout << "You have returned " << title << ". " << endl;
@@ -59,6 +67,10 @@ void MovieCollection::displayAllMovies() {
 }
 
 void MovieCollection::addMovie() {
+    if (allMovies.treeSize() >= 15) {
+        cout << "Movie library is full, please remove a movie before adding a new one.";
+        return;
+    }
     cout << endl;
     cin.ignore();
     string title = dataEntry("movie title");
@@ -107,7 +119,17 @@ void MovieCollection::removeMovie() {
         int numToRemove;
         cin >> numToRemove;
         if (numToRemove >= existingMovie->numCopies) {
+            cout << "You are trying to remove all copies of " <<title << ". " << endl;
+            cout << "Select 1 to delete the entire movie from the library, or 2 to only remove the copies." << endl;
+            int option;
+            cin >> option;
+            if (option == 1) {
 
+            } else {
+                existingMovie->numCopies = 0;
+                existingMovie->numAvailable = 0;
+                cout << "Removed " <<numToRemove << " copies of "<< title <<". There are now 0 copies in total."<< endl;
+            }
         } else {
             existingMovie->numCopies -= numToRemove;
             existingMovie->numAvailable -= numToRemove;

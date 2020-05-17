@@ -9,30 +9,31 @@ void MemberCollection::findMemberPhone() {
     cin.ignore();
     string firstName = dataEntry("first name");
     string lastName = dataEntry("last name");
-    Member * searchMember = findMember(firstName, lastName);
-    if (searchMember == nullptr) {
+    int searchMember = findMember(firstName, lastName);
+    if (searchMember == -1) {
         cout << "Member does not exist in database." << endl;
     } else {
-        cout << "Phone number of " << searchMember->firstName << " " << searchMember->lastName << ": " 
-            << searchMember->phoneNum << endl;
+        Member thisMember = members[searchMember];
+        cout << "Phone number of " << thisMember.firstName << " " << thisMember.lastName << ": " 
+            << thisMember.phoneNum << endl;
     }
 }
 
-Member * MemberCollection::findMember(string firstName, string lastName) {
+int MemberCollection::findMember(string firstName, string lastName) {
     for (int i = 0; i < totalMembers; i++) {
         Member registeredMem = members[i];
         if (firstName == registeredMem.firstName and lastName == registeredMem.lastName) {
-            return &members[i];
+            return i;
         } 
     }
-    return nullptr;
+    return -1;
 }
 
-void MemberCollection::listMemberMovies(Member & currentMember) {
-    if (currentMember.moviesHeld.empty()) {
+void MemberCollection::listMemberMovies(int currentMember) {
+    if (members[currentMember].moviesHeld.empty()) {
         cout << "No movies currently borrowed." << endl;
     } else {
-        for (const auto &movie : currentMember.moviesHeld) {
+        for (const auto &movie : members[currentMember].moviesHeld) {
             cout << movie << endl;
         }
     }
@@ -87,7 +88,7 @@ bool MemberCollection::passwordValidation(string pwd) {
     }
 }
 
-bool MemberCollection::checkMemberPassword(string username, string password, Member & currentMember) {
+bool MemberCollection::checkMemberPassword(string username, string password, int &currentMember) {
     /** Split username into first name and last name **/
     string firstName; string lastName;
     int caps; //find capital letter to split username into first and last name
@@ -100,14 +101,15 @@ bool MemberCollection::checkMemberPassword(string username, string password, Mem
     lastName = username.substr(0, caps);
     firstName = username.substr(caps); 
 
-    Member * existingMember = findMember(firstName, lastName);
+    int existingMember = findMember(firstName, lastName);
 
-    if (existingMember != nullptr) {
-        if (existingMember->pwd == password) {
-            currentMember = *existingMember;
+    if (existingMember != -1) {
+        Member thisMember = members[existingMember];
+        if (thisMember.pwd == password) {
+            currentMember = existingMember;
             return true;
         } else {
-            cout << existingMember->pwd << endl;
+            //cout << existingMember->pwd << endl;
             cout << "Incorrect password, ";
             return false;
         }

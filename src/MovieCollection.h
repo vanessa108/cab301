@@ -6,6 +6,7 @@
 //#include "Movie.h"
 #include "MovieBST.h"
 #include "Member.h"
+#include "MemberCollection.h"
 
 using std::cout; using std::endl; using std::cin; using std::string;
 
@@ -25,8 +26,8 @@ public:
     void displayAllMovies();
     void displayBorrowed(); 
     void displayTopTen();
-    void borrowMovie(Member & currentMember);
-    void returnMovie(Member & currentMember);
+    void borrowMovie(int currentMember, MemberCollection & memberCol);
+    void returnMovie(int currentMember, MemberCollection & memberCol);
     
 
 private:

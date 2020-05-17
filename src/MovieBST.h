@@ -66,7 +66,7 @@ private:
     int _treeSize(MovieNode * &node);
 
     int _treeToArray(Movie mostBorrowed[], MovieNode * &node, int i);
-    void _deleteMovie(MovieNode * &root);
+    MovieNode *& _deleteMovie(string movieTitle, MovieNode * &root);
 
 };
 

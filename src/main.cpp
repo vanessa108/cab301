@@ -56,7 +56,7 @@ int main() {
         
         } else if (mode == 2) {
             // retrieve and validate member login
-            Member currentMember; 
+            int currentMember; 
             if (!menu.memberAccess) {
                 menu.memberPassword(mode, memberCol, currentMember);
             } 
@@ -67,10 +67,10 @@ int main() {
                     movieCol.displayAllMovies();
                 }
                 if (memberMode == 2) {
-                    movieCol.borrowMovie(currentMember);
+                    movieCol.borrowMovie(currentMember, memberCol);
                 }
                 if (memberMode == 3) {
-                    movieCol.returnMovie(currentMember);
+                    movieCol.returnMovie(currentMember, memberCol);
                 }
                 if (memberMode == 4) {
                     memberCol.listMemberMovies(currentMember);
@@ -83,9 +83,8 @@ int main() {
 
         /** exit video store **/
         } else if (mode == 0) {
-            movieCol.mostBorrwowed();
-            //cout << "Exiting video store";
-            //return 0;
+            cout << "Exiting video store";
+            return 0;
         } else {
             mode = menu.mainMenu();
         }
@@ -113,14 +112,14 @@ void importData() {
         "Movie 3", 
         "Actor 3", "Director 3",
         1, 2, 
-        100, 2019, 4, 10
+        100, 2019, 4, 2
     ));
 
     movieCol.allMovies.insertMovie(Movie(
         "A Very Interesting Movie", 
         "Actor", "D1",
         1, 2, 
-        60, 2020, 4, 5
+        60, 2020, 4, 1
     ));
 
     movieCol.allMovies.insertMovie(Movie(
@@ -134,7 +133,7 @@ void importData() {
         "Aladdin", 
         "Will  Smith, Mena Massoud", "Guy Ritchie",
         1, 2, 
-        128, 2019, 4, 9
+        128, 2019, 4, 2
     ));
 
     movieCol.allMovies.insertMovie(Movie(

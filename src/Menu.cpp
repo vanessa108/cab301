@@ -82,7 +82,7 @@ int Menu::staffMenu(int &mode){
     return 0;
 }
 
-void Menu::memberPassword(int &mode, MemberCollection &memberCol, Member &currentMember) {
+void Menu::memberPassword(int &mode, MemberCollection &memberCol, int &currentMember) {
     string username; string password;
     cout << "Username: "; cin >> username;
     cout << "Password: "; cin >> password;

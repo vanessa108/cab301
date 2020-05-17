@@ -90,6 +90,7 @@ int MovieBST::_treeToArray(Movie mostBorrowed[], MovieNode * &node, int i) {
 
 }
 
-void MovieBST::_deleteMovie(MovieNode * &node) {
-
+MovieNode *& MovieBST::_deleteMovie(string movieTitle, MovieNode * &node) {
+    MovieNode *& toBeDeleted = _findMovie(movieTitle, root);
+    return toBeDeleted;
 }

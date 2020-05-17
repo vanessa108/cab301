@@ -20,7 +20,7 @@ public:
     int memberMenu(int & mode);
 
     /* Checks member log in */
-    void memberPassword(int &mode, MemberCollection &memberCol, Member &currentMember);
+    void memberPassword(int &mode, MemberCollection &memberCol, int &currentMember);
     
     /* StaffAccess stays true until staff member returns to main menu */
     bool memberAccess = false; 
