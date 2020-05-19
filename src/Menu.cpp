@@ -35,7 +35,7 @@ void Menu::staffPassword(int &mode) {
     if (username == "staff" and password == "today123") {
         staffAccess = true;
     } else {
-        cout << "Username or password incorrect, select 1 to try again or 0 to return to the main menu" << endl;
+        cout << "Username or password incorrect, select 1 to try again or 0 to return to the main menu:" << endl;
         int input; cin >> input;
         if (input == 0) {
             mode = -1;
@@ -89,7 +89,7 @@ void Menu::memberPassword(int &mode, MemberCollection &memberCol, int &currentMe
     if (memberCol.checkMemberPassword(username, password, currentMember)) {
         memberAccess = true;
     } else {
-        cout << "select 1 to try again or 0 to return to the main menu" << endl;
+        cout << "select 1 to try again or 0 to return to the main menu:" << endl;
         int input; cin >> input;
         if (input == 0) {
             mode = -1;

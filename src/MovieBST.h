@@ -43,6 +43,8 @@ public:
     int treeSize();
 
     void treeToArray(Movie mostBorowed[]);
+    void deleteMovie(string movieTitle);
+    void preOrder();
      
 private:
     /* Find a movie that matches a given title, called recursively to go down tree
@@ -66,8 +68,8 @@ private:
     int _treeSize(MovieNode * &node);
 
     int _treeToArray(Movie mostBorrowed[], MovieNode * &node, int i);
-    MovieNode *& _deleteMovie(string movieTitle, MovieNode * &root);
-
+    
+    void _preOrder(MovieNode * &root);
 };
 
 

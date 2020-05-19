@@ -90,7 +90,59 @@ int MovieBST::_treeToArray(Movie mostBorrowed[], MovieNode * &node, int i) {
 
 }
 
-MovieNode *& MovieBST::_deleteMovie(string movieTitle, MovieNode * &node) {
+void MovieBST::deleteMovie(string movieTitle) {
     MovieNode *& toBeDeleted = _findMovie(movieTitle, root);
-    return toBeDeleted;
+    //case 1: node is leaf
+    if (toBeDeleted->left == nullptr and toBeDeleted->right == nullptr) {
+        //cout << "case 1" << endl;
+        toBeDeleted = nullptr;
+    }
+    //case 2: node has one child
+    else if (toBeDeleted->left == nullptr or toBeDeleted->right == nullptr) {
+        //cout << "case 2" << endl;
+        MovieNode *& tempNewNode = toBeDeleted;
+        if (toBeDeleted->left == nullptr) {
+            tempNewNode = toBeDeleted->right;
+        } else {
+            tempNewNode = toBeDeleted->left;
+        }
+        if (toBeDeleted == root) {
+            root = tempNewNode;
+            toBeDeleted = tempNewNode;
+        }
+    }
+    //case 3: two children
+    else {
+        if (toBeDeleted->left->right == nullptr) {
+            //cout << "case 3.1" << endl;
+            toBeDeleted->data = toBeDeleted->left->data;
+            toBeDeleted->left = toBeDeleted->left->left;
+        } else {
+            //cout << "case 3.2" << endl;
+            MovieNode *tempParent = toBeDeleted;
+            MovieNode *tempChild = toBeDeleted->left;
+            while (tempChild->right != nullptr) {
+                tempParent = tempChild;
+                tempChild = tempChild->right;
+            }
+            toBeDeleted->data = tempChild->data;
+            tempParent->right = tempChild->left;
+
+        }
+        
+    }
+
+
+}
+
+void MovieBST::preOrder() {
+    _preOrder(root);
+}
+
+void MovieBST::_preOrder(MovieNode *&root) {
+    if (root != nullptr) {
+        cout << root->data.title << "|";
+        _preOrder(root->left);
+        _preOrder(root->right);
+    }
 }

@@ -33,6 +33,7 @@ void MemberCollection::listMemberMovies(int currentMember) {
     if (members[currentMember].moviesHeld.empty()) {
         cout << "No movies currently borrowed." << endl;
     } else {
+        cout << "You currently have the following movies borrowed:" << endl;
         for (const auto &movie : members[currentMember].moviesHeld) {
             cout << movie << endl;
         }
@@ -109,7 +110,6 @@ bool MemberCollection::checkMemberPassword(string username, string password, int
             currentMember = existingMember;
             return true;
         } else {
-            //cout << existingMember->pwd << endl;
             cout << "Incorrect password, ";
             return false;
         }

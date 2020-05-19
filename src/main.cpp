@@ -116,7 +116,7 @@ void importData() {
     ));
 
     movieCol.allMovies.insertMovie(Movie(
-        "A Very Interesting Movie", 
+        "AVery Interesting Movie", 
         "Actor", "D1",
         1, 2, 
         60, 2020, 4, 1
@@ -133,7 +133,7 @@ void importData() {
         "Aladdin", 
         "Will  Smith, Mena Massoud", "Guy Ritchie",
         1, 2, 
-        128, 2019, 4, 2
+        128, 2019, 1, 2
     ));
 
     movieCol.allMovies.insertMovie(Movie(
@@ -143,6 +143,33 @@ void importData() {
         100, 2010, 4, 9
     ));
 
+    movieCol.allMovies.insertMovie(Movie(
+        "BoyHoood", 
+        "Mfg", "Byron Howgf Greno",
+        1, 2, 
+        100, 2010, 4, 9
+    ));
+
+    movieCol.allMovies.insertMovie(Movie(
+        "Mp", 
+        "Mfg", "Byron Howgf Greno",
+        1, 2, 
+        100, 2010, 4, 9
+    ));
+
+    movieCol.allMovies.insertMovie(Movie(
+        "MR", 
+        "Mfg", "Byron Howgf Greno",
+        1, 2, 
+        100, 2010, 4, 9
+    ));
+
+    movieCol.allMovies.insertMovie(Movie(
+        "Azrure", 
+        "Mfg", "Byron Howgf Greno",
+        1, 2, 
+        100, 2010, 4, 9
+    ));
 
 
     memberCol.members[0] = Member(

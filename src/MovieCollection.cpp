@@ -12,16 +12,12 @@ void MovieCollection::mostBorrwowed() {
     allMovies.treeToArray(movieArray);
     //find number of movies in tree
     int numMovies = allMovies.treeSize();
-    //create new array for sorted movies
-    Movie sortedMovies[numMovies];
-    for (int i = 0; i < numMovies; i++) {
-        sortedMovies[i] = movieArray[i];
-    }
-    quickSort(sortedMovies, 0, numMovies-1);
+    //apply quick sort 
+    quickSort(movieArray, 0, numMovies-1);
     cout << "Top 10 most borrowed movies:" << endl;
     int i = 1; 
     while (i <= 10 and i <= numMovies) {
-        Movie thisMovie = sortedMovies[numMovies - i];
+        Movie thisMovie = movieArray[numMovies - i];
         cout << thisMovie.title << ", borrowed " << thisMovie.numTimesBorrowed << " times." << endl; 
         i++;     
     }
@@ -34,10 +30,15 @@ void MovieCollection::borrowMovie(int currentMember, MemberCollection & memberCo
     Movie * movie = allMovies.findMovie(title);
     if (movie != nullptr) {
         if (movie->numAvailable > 0) {
-            memberCol.members[currentMember].moviesHeld.insert(title);
-            movie->numAvailable -= 1;
-            movie->numTimesBorrowed += 1;
-            cout << "You have borrowed a copy of " << title << ". " << endl;
+            if (memberCol.members[currentMember].moviesHeld.count(title) > 0) {
+                cout << "You have already borrowed a copy of " << title << ". " << endl;
+            } else {
+                memberCol.members[currentMember].moviesHeld.insert(title);
+                movie->numAvailable -= 1;
+                movie->numTimesBorrowed += 1;
+                cout << "You have borrowed a copy of " << title << ". " << endl;
+            }
+
         } else {
             cout << "No copies of " << title <<" available." << endl;
         }               
@@ -67,6 +68,7 @@ void MovieCollection::displayAllMovies() {
 }
 
 void MovieCollection::addMovie() {
+    cout << endl << "You are adding a movie to the library.";
     if (allMovies.treeSize() >= 15) {
         cout << "Movie library is full, please remove a movie before adding a new one.";
         return;
@@ -103,6 +105,7 @@ void MovieCollection::addMovie() {
             Movie(title, actors, directors, genre, classification, duration,
             releaseDate, numCopies, 0)
         );
+        cout << "You have successfully added " << title << " to the library." << endl;
 
     }
 }
@@ -124,6 +127,9 @@ void MovieCollection::removeMovie() {
             int option;
             cin >> option;
             if (option == 1) {
+                //allMovies.preOrder();
+                allMovies.deleteMovie(title);
+                //allMovies.preOrder();
 
             } else {
                 existingMovie->numCopies = 0;
