@@ -21,16 +21,20 @@ public:
     /* Validates a members login details 
     *   Output: true if username/password matches */
     bool checkMemberPassword(string username, string password, int &currentMember);
-
-    int findMember(string firstname, string lastname);
     
     /* List the title and number of copies of movies held by a member
     *    Input: reference to member location */
     void listMemberMovies(int currentMember);
     
+    /** Finds and prints a member's phone number
+     * Given their full name */
     void findMemberPhone();
 
 private:
+    /** Finds a member given their full name
+     *  Output: index to member in the member array */
+    int findMember(string firstname, string lastname);
+    
     /** Helper function for cout/cin data entries
     *   Input: string containing name of what data is being retrieved
     *   Returns string with the user's input **/

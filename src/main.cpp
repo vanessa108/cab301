@@ -20,7 +20,6 @@ int main() {
     importData(); //import data
     cout << endl;
     cin.ignore();
-    //cout << "Importing sample data...";
     // video store modes, -1 = main menu, 1 = staff mode, 2 = member mode, 3 = exit video store
     int mode = -1;
     while (videoStore) {
@@ -75,7 +74,6 @@ int main() {
                 if (memberMode == 4) {
                     memberCol.listMemberMovies(currentMember);
                 }
-
                 if (memberMode == 5) {
                     movieCol.mostBorrwowed();
                 }

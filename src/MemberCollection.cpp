@@ -23,9 +23,10 @@ int MemberCollection::findMember(string firstName, string lastName) {
     for (int i = 0; i < totalMembers; i++) {
         Member registeredMem = members[i];
         if (firstName == registeredMem.firstName and lastName == registeredMem.lastName) {
-            return i;
+            return i; //index to member
         } 
     }
+    // member not found
     return -1;
 }
 

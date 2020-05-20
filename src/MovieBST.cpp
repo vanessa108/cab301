@@ -45,9 +45,11 @@ void MovieBST::inOrder() {
 
 void MovieBST::_inOrder(MovieNode * &root) {
     if (root != nullptr) {
+        //inorder on left subtree
         _inOrder(root->left);
         root->data.displayInfo();
         cout << endl;
+        //inorder on right subtree
         _inOrder(root->right);
     }
 } 
@@ -58,10 +60,12 @@ Movie * MovieBST::findMovie(string movieTitle) {
 }
 
 MovieNode *& MovieBST::_findMovie(string movieTitle, MovieNode * &node) {
+    //movie found, or tree has been traversed so movie does not exist
     if (node == nullptr or node->data.title == movieTitle) {
         return node;
     } else {
         string currentTitle = node->data.title;
+        //compares string in alphabetical order
         int titleComparison = strcmpi(currentTitle.c_str(), movieTitle.c_str());
         if (titleComparison < 0) {
             //put movie on right
@@ -74,15 +78,21 @@ MovieNode *& MovieBST::_findMovie(string movieTitle, MovieNode * &node) {
 }
 
 void MovieBST::treeToArray(Movie mostBorrowed[]) {
+    //start at first item in array
     _treeToArray(mostBorrowed, root, 0);
 }
+
 int MovieBST::_treeToArray(Movie mostBorrowed[], MovieNode * &node, int i) {
     if (node == nullptr) {return 0;}
+    //transfer movie object to array 
     mostBorrowed[i] = node->data;
+    // index to next item in array
     i++;
+    //repreat for left tree
     if (node->left != nullptr) {
         i = _treeToArray(mostBorrowed, node->left, i);
     }
+    //repeat for right tree
     if (node->right != nullptr) {
         i = _treeToArray(mostBorrowed, node->right, i);
     }
@@ -127,12 +137,8 @@ void MovieBST::deleteMovie(string movieTitle) {
             }
             toBeDeleted->data = tempChild->data;
             tempParent->right = tempChild->left;
-
-        }
-        
+        } 
     }
-
-
 }
 
 void MovieBST::preOrder() {

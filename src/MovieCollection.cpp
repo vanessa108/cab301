@@ -15,6 +15,7 @@ void MovieCollection::mostBorrwowed() {
     //apply quick sort 
     quickSort(movieArray, 0, numMovies-1);
     cout << "Top 10 most borrowed movies:" << endl;
+    // loop through sorted array from back to front/10th to back
     int i = 1; 
     while (i <= 10 and i <= numMovies) {
         Movie thisMovie = movieArray[numMovies - i];
@@ -24,12 +25,12 @@ void MovieCollection::mostBorrwowed() {
 }
 
 void MovieCollection::borrowMovie(int currentMember, MemberCollection & memberCol) {
-    
     cin.ignore();
     string title = dataEntry("title of the movie you would like to borrow");
     Movie * movie = allMovies.findMovie(title);
     if (movie != nullptr) {
         if (movie->numAvailable > 0) {
+            // if member already holds a copy of the movie
             if (memberCol.members[currentMember].moviesHeld.count(title) > 0) {
                 cout << "You have already borrowed a copy of " << title << ". " << endl;
             } else {
@@ -38,11 +39,10 @@ void MovieCollection::borrowMovie(int currentMember, MemberCollection & memberCo
                 movie->numTimesBorrowed += 1;
                 cout << "You have borrowed a copy of " << title << ". " << endl;
             }
-
-        } else {
+        } else { // no copies available
             cout << "No copies of " << title <<" available." << endl;
         }               
-    } else {
+    } else { // movie title not found
         cout << "Movie does not exist." << endl;
     }
 }
@@ -114,6 +114,7 @@ void MovieCollection::removeMovie() {
     cin.ignore();
     string title = dataEntry("title of the movie you would like remove");
     Movie * existingMovie = allMovies.findMovie(title);
+    // if the movie does not exist
     if (existingMovie == nullptr) {
         cout << "Movie not found. ";
     } else {
@@ -121,22 +122,26 @@ void MovieCollection::removeMovie() {
         cout << "Enter the number of copies to remove: ";
         int numToRemove;
         cin >> numToRemove;
+        // if the number of movies to remove is more than the number of existing copies 
         if (numToRemove >= existingMovie->numCopies) {
             cout << "You are trying to remove all copies of " <<title << ". " << endl;
             cout << "Select 1 to delete the entire movie from the library, or 2 to only remove the copies." << endl;
             int option;
             cin >> option;
+            // remove movie from library (delete node from BST)
             if (option == 1) {
                 //allMovies.preOrder();
                 allMovies.deleteMovie(title);
                 //allMovies.preOrder();
-
-            } else {
+            } 
+            // decrease number of copies but keep movie in BST
+            else {
                 existingMovie->numCopies = 0;
                 existingMovie->numAvailable = 0;
                 cout << "Removed " <<numToRemove << " copies of "<< title <<". There are now 0 copies in total."<< endl;
             }
         } else {
+            //decrease number of copies based of number to remove
             existingMovie->numCopies -= numToRemove;
             existingMovie->numAvailable -= numToRemove;
              cout << "Removed " <<numToRemove << " copies of "<< title <<". There are now " << existingMovie->numCopies <<" copies in total."<< endl;
@@ -158,6 +163,7 @@ int MovieCollection::getGenre() {
     cout <<"5. Sci-Fi \n6. Comedy \n7. Thriller \n8.Other" << endl;
     cout << "Make selection (1-8): ";
     cin>>input;
+    // check user input is a number
     if (isdigit(input)) {
         return input;
     } else {
@@ -171,21 +177,24 @@ int MovieCollection::getClassification() {
     cout << "1. General (G) \n2. Parental Guidance (PG) \n3. Mature (M) \n4. Mature Accompanied (MA15+)" << endl;
     cout << "Make selection (1-4): ";
     cin>>input;
+    // check option is a number
     if (isdigit(input)) {
         return input;
     } else {
         return 10;
     }
 }
-
+// input: pointer to first item in movie array, left array and right array
 void MovieCollection::quickSort(Movie * movies, int l, int r) {
     if (l < r) {
         int s = partition(movies, l, r);
+        //create new subarrays, either side of the pivot
         quickSort(movies, l, s);
         quickSort(movies, s+1, r);
     }
 }
 
+// Based of Hoare's paritioning
 int MovieCollection::partition(Movie * movies, int l, int r) {
     int p = (movies + l)->numTimesBorrowed;
     int i = l-1;
@@ -208,7 +217,7 @@ int MovieCollection::partition(Movie * movies, int l, int r) {
     swap((movies+l), (movies+j));
     return j;
 }
-
+// helper function to swap 
 void MovieCollection::swap(Movie *a, Movie *b) {
         Movie temp = *a;
         *a = *b;

@@ -136,7 +136,6 @@ int Menu::memberMenu(int &mode){
         default:
             cout << input << " is invalid, select an input 1-4 or 0 to exit:" << endl;
             break;
-            //return -1;
     }
     return 0;
 }
