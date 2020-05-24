@@ -4,6 +4,7 @@
 
 using std::string; using std::cout; using std::endl;
 
+/** Helper function to display all movie info **/
 void Movie::displayInfo() {
     cout << "Title: " << title << endl;
     cout << "Starring: " << actors << endl;
@@ -18,7 +19,7 @@ void Movie::displayInfo() {
 
 }
 
-
+/** Helper function to retrieve genre based on number code **/
 string Movie::getGenre(int code) {
     switch (code) {
     case '1':
@@ -41,7 +42,7 @@ string Movie::getGenre(int code) {
         return "Misc.";
     }
 }
-
+/** Helper function to retrieve classification based on number code **/
 string Movie::getClassification(int code) {
     switch (code) {
     case '1':

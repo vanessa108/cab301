@@ -16,8 +16,6 @@ public:
     /* binary search tree that stores all movies */
     MovieBST allMovies;
 
-    Movie movieArray[15];
-
     void mostBorrwowed();
     /** Function: takes in user inputs to add a new movie 
     *      If the movie title already exists, the number of copies can be altered */

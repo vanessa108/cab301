@@ -7,35 +7,47 @@
 //#include "Movie.h"
 using std::string; using std::cout; using std::endl;
 
+/** Top 10 most borrowed function **/
 void MovieCollection::mostBorrwowed() {
-    //transfer movies from tree to movie array
-    allMovies.treeToArray(movieArray);
     //find number of movies in tree
     int numMovies = allMovies.treeSize();
+        
+    Movie movieArray[numMovies];
+
+    //transfer movies from tree to movie array
+    allMovies.treeToArray(movieArray);
+
     //apply quick sort 
     quickSort(movieArray, 0, numMovies-1);
+    // list top 10 most borrowed
     cout << "Top 10 most borrowed movies:" << endl;
     // loop through sorted array from back to front/10th to back
     int i = 1; 
     while (i <= 10 and i <= numMovies) {
         Movie thisMovie = movieArray[numMovies - i];
-        cout << thisMovie.title << ", borrowed " << thisMovie.numTimesBorrowed << " times." << endl; 
+        cout << i<< ": " << thisMovie.title << ".....borrowed " << thisMovie.numTimesBorrowed << " times." << endl; 
         i++;     
     }
 }
 
 void MovieCollection::borrowMovie(int currentMember, MemberCollection & memberCol) {
     cin.ignore();
+    // prevent member from borrowing movie if they currently have 10
+    if (memberCol.members[currentMember].moviesHeld.size() >= 10) {
+        cout << "You currently have 10 movies borrowed. Please return a movie before borrowing another one." << endl;
+        return;
+    }
     string title = dataEntry("title of the movie you would like to borrow");
-    Movie * movie = allMovies.findMovie(title);
+    Movie * movie = allMovies.findMovie(title); // check movie exists
     if (movie != nullptr) {
         if (movie->numAvailable > 0) {
             // if member already holds a copy of the movie
             if (memberCol.members[currentMember].moviesHeld.count(title) > 0) {
                 cout << "You have already borrowed a copy of " << title << ". " << endl;
             } else {
+                // add movie to member's list of borrowed movies
                 memberCol.members[currentMember].moviesHeld.insert(title);
-                movie->numAvailable -= 1;
+                movie->numAvailable -= 1; 
                 movie->numTimesBorrowed += 1;
                 cout << "You have borrowed a copy of " << title << ". " << endl;
             }
@@ -51,12 +63,14 @@ void MovieCollection::returnMovie(int currentMember, MemberCollection & memberCo
     cin.ignore();
     string title = dataEntry("title of the movie you would like to return");
     Member thisMember = memberCol.members[currentMember];
+    // check member has movie borrowed
     if (thisMember.moviesHeld.count(title) > 0) {
         memberCol.members[currentMember].moviesHeld.erase(title);
         Movie * movie = allMovies.findMovie(title);
         movie-> numAvailable += 1;
         cout << "You have returned " << title << ". " << endl;
     } else {
+        //member does not have any copies of movie
         cout << "You have no copies of " << title << " withheld." << endl;
     }
 
@@ -68,12 +82,7 @@ void MovieCollection::displayAllMovies() {
 }
 
 void MovieCollection::addMovie() {
-    cout << endl << "You are adding a movie to the library.";
-    if (allMovies.treeSize() >= 15) {
-        cout << "Movie library is full, please remove a movie before adding a new one.";
-        return;
-    }
-    cout << endl;
+    cout << endl << "You are adding a movie to the library." << endl;
     cin.ignore();
     string title = dataEntry("movie title");
     // pointer to movie object in BST (null ptr if it does not exist)
@@ -81,6 +90,7 @@ void MovieCollection::addMovie() {
     if (existingMovie != nullptr) { //if movie exists
         int numAddCopies = 0;
         cout << "How many copies would you like to add?: ";
+        // increase number of copies
         std::cin >> numAddCopies;
         existingMovie->numCopies += numAddCopies;
         existingMovie->numAvailable += numAddCopies;
@@ -103,7 +113,7 @@ void MovieCollection::addMovie() {
         //add movie to the BST
         allMovies.insertMovie( 
             Movie(title, actors, directors, genre, classification, duration,
-            releaseDate, numCopies, 0)
+            releaseDate, numCopies, 0) // numTimesBorrowed = 0
         );
         cout << "You have successfully added " << title << " to the library." << endl;
 
@@ -133,6 +143,7 @@ void MovieCollection::removeMovie() {
                 //allMovies.preOrder();
                 allMovies.deleteMovie(title);
                 //allMovies.preOrder();
+                cout << title << " has been removed from the movie library." << endl;
             } 
             // decrease number of copies but keep movie in BST
             else {
@@ -196,14 +207,14 @@ void MovieCollection::quickSort(Movie * movies, int l, int r) {
 
 // Based of Hoare's paritioning
 int MovieCollection::partition(Movie * movies, int l, int r) {
-    int p = (movies + l)->numTimesBorrowed;
+    int p = (movies + l)->numTimesBorrowed; // value of pivot
     int i = l-1;
     int j = r+1;
 
     while (true) {
         do {
             i++;
-        } while ((movies + i)->numTimesBorrowed < p );
+        } while ((movies + i)->numTimesBorrowed < p ); 
 
         do {
             j--;

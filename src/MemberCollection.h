@@ -13,7 +13,7 @@ public:
     /* Array of members */ 
     Member members[15]; 
     /* total number of members, used to index the array */    
-    int totalMembers = 5; 
+    int totalMembers = 1; 
 
     /* Retrieves member information and inputs member object in a member array */
     void registerMember();
@@ -32,7 +32,8 @@ public:
 
 private:
     /** Finds a member given their full name
-     *  Output: index to member in the member array */
+     *  Output: index to member in the member array
+     *           -1 if member not found */
     int findMember(string firstname, string lastname);
     
     /** Helper function for cout/cin data entries

@@ -5,6 +5,7 @@
 
 using std::cout; using std::endl; using std::cin; using std::string;
 
+// display main menu, waits for input
 int Menu::mainMenu(){
     cout << "===========Main Menu===========" << endl;
     cout << "1. Staff Login" << endl;
@@ -27,6 +28,7 @@ int Menu::mainMenu(){
     }
 }
 
+// validates staff password
 void Menu::staffPassword(int &mode) {
     string username;
     string password;
@@ -38,13 +40,14 @@ void Menu::staffPassword(int &mode) {
         cout << "Username or password incorrect, select 1 to try again or 0 to return to the main menu:" << endl;
         int input; cin >> input;
         if (input == 0) {
-            mode = -1;
+            mode = -1; // return to main menu
         } else if (input == 1){
             staffPassword(mode);
         }   
     }
 }
 
+//displays staff menu, waits for input
 int Menu::staffMenu(int &mode){
 
     cout << "\n===========Staff Menu===========" << endl;
@@ -71,8 +74,8 @@ int Menu::staffMenu(int &mode){
             return 4;
             break;
         case '0':
-            staffAccess = false;
-            mode = -1;
+            staffAccess = false; //member log out
+            mode = -1; // return to main menu
             break;
         default:
             cout << input << " is invalid, select an input 1-4 or 0 to exit:" << endl;
@@ -82,24 +85,28 @@ int Menu::staffMenu(int &mode){
     return 0;
 }
 
+// validate member password
 void Menu::memberPassword(int &mode, MemberCollection &memberCol, int &currentMember) {
     string username; string password;
     cout << "Username: "; cin >> username;
     cout << "Password: "; cin >> password;
+    // check member exists and password is correct 
     if (memberCol.checkMemberPassword(username, password, currentMember)) {
         memberAccess = true;
     } else {
         cout << "select 1 to try again or 0 to return to the main menu:" << endl;
         int input; cin >> input;
         if (input == 0) {
-            mode = -1;
+            mode = -1; // return to main menu
         } else if (input == 1){
+            // wait until correct login provided
             memberPassword(mode, memberCol, currentMember);
         }   
     }
 
 }
 
+// displays member menu, waits for input
 int Menu::memberMenu(int &mode){
 
     cout << "\n=========Member Menu==========" << endl;
@@ -130,8 +137,8 @@ int Menu::memberMenu(int &mode){
             return 5;
             break;
         case '0':
-            memberAccess = false;
-            mode = -1;
+            memberAccess = false; // member log out
+            mode = -1; // return to member menu
             break;
         default:
             cout << input << " is invalid, select an input 1-4 or 0 to exit:" << endl;

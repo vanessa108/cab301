@@ -9,15 +9,19 @@
 using std::cout; using std::endl; using std::cin;
 
 bool videoStore = true; //program running
+
+/** Contains all menu functions, manages inputs **/
 Menu menu; // initialise menu class
+/** Contains array of member objects **/
 MemberCollection memberCol; //initialise member class
+/** Contains BST of movie nodes **/
 MovieCollection movieCol; //initialise movie class
 
 void importData(); 
 
 int main() {
     cout << "Importing sample data... press any key to continue";
-    importData(); //import data
+    importData(); //import sample data
     cout << endl;
     cin.ignore();
     // video store modes, -1 = main menu, 1 = staff mode, 2 = member mode, 3 = exit video store
@@ -54,12 +58,12 @@ int main() {
          * ****************************************/         
         
         } else if (mode == 2) {
+            int currentMember; //index to current member's position in member array
             // retrieve and validate member login
-            int currentMember; 
             if (!menu.memberAccess) {
                 menu.memberPassword(mode, memberCol, currentMember);
             } 
-                
+            // while member has not left member menu
             while (menu.memberAccess) {
                 int memberMode = menu.memberMenu(mode);
                 if (memberMode == 1) {
@@ -90,6 +94,7 @@ int main() {
 
 }
  
+/** Test data used for testing functionality**/
 void importData() {
     movieCol.allMovies.insertMovie(Movie(
         "Movie 1", 
@@ -114,7 +119,7 @@ void importData() {
     ));
 
     movieCol.allMovies.insertMovie(Movie(
-        "AVery Interesting Movie", 
+        "A Very Interesting Movie", 
         "Actor", "D1",
         1, 2, 
         60, 2020, 4, 1
@@ -141,35 +146,6 @@ void importData() {
         100, 2010, 4, 9
     ));
 
-    movieCol.allMovies.insertMovie(Movie(
-        "BoyHoood", 
-        "Mfg", "Byron Howgf Greno",
-        1, 2, 
-        100, 2010, 4, 9
-    ));
-
-    movieCol.allMovies.insertMovie(Movie(
-        "Mp", 
-        "Mfg", "Byron Howgf Greno",
-        1, 2, 
-        100, 2010, 4, 9
-    ));
-
-    movieCol.allMovies.insertMovie(Movie(
-        "MR", 
-        "Mfg", "Byron Howgf Greno",
-        1, 2, 
-        100, 2010, 4, 9
-    ));
-
-    movieCol.allMovies.insertMovie(Movie(
-        "Azrure", 
-        "Mfg", "Byron Howgf Greno",
-        1, 2, 
-        100, 2010, 4, 9
-    ));
-
-
     memberCol.members[0] = Member(
         "Vanessa",
         "Li",
@@ -177,36 +153,6 @@ void importData() {
         "12345678",
         "1111"
     );
-    memberCol.members[1] = Member(
-        "Jarod",
-        "Lam",
-        "Address 2",
-        "12345678",
-        "1111"
-    );
 
-    memberCol.members[2] = Member(
-        "Alan",
-        "Yu",
-        "Address 3",
-        "12345678",
-        "1111"
-    );
-
-    memberCol.members[3] = Member(
-        "Riva",
-        "Mendoza",
-        "Address 4",
-        "12345678",
-        "1111"
-    );
-
-    memberCol.members[4] = Member(
-        "Maria",
-        "Vargas",
-        "Address 5",
-        "12345678",
-        "1111"
-    );
 }
 

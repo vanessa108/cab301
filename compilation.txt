@@ -1,0 +1,2 @@
+Application was compiled by running the following : g++ -std=c++14 -o main *.cpp && main
+In Windows 10 using MinGW64 

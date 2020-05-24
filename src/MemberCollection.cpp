@@ -9,11 +9,14 @@ void MemberCollection::findMemberPhone() {
     cin.ignore();
     string firstName = dataEntry("first name");
     string lastName = dataEntry("last name");
+    // check that member exists
     int searchMember = findMember(firstName, lastName);
     if (searchMember == -1) {
         cout << "Member does not exist in database." << endl;
     } else {
+        // obtain member from members array
         Member thisMember = members[searchMember];
+        //display phone number
         cout << "Phone number of " << thisMember.firstName << " " << thisMember.lastName << ": " 
             << thisMember.phoneNum << endl;
     }
@@ -23,12 +26,13 @@ int MemberCollection::findMember(string firstName, string lastName) {
     for (int i = 0; i < totalMembers; i++) {
         Member registeredMem = members[i];
         if (firstName == registeredMem.firstName and lastName == registeredMem.lastName) {
-            return i; //index to member
+            return i; //index to member position in members array
         } 
     }
     // member not found
     return -1;
 }
+
 
 void MemberCollection::listMemberMovies(int currentMember) {
     if (members[currentMember].moviesHeld.empty()) {
@@ -52,6 +56,7 @@ void MemberCollection::registerMember() {
             return;
         }
     }
+    // if member does not exist:
     string address = dataEntry("address");
     string phNum = dataEntry("phone number");
     string pwd = dataEntry("password (4 digits)");
@@ -77,16 +82,18 @@ string MemberCollection::dataEntry(string dataName) {
 
 bool MemberCollection::passwordValidation(string pwd) {
     bool allDigit = false; //true if all characters are digits
+    // check all characters are digits
     for (auto c : pwd) {
         if (!isdigit(c)) {
             break;
         }
-        allDigit = true;
+        allDigit = true; 
     }
+    // check that there are exactly 4 digits
     if (allDigit and pwd.size() == 4) { //check there are only 4 digits
         return true; //password is valid
     } else {
-        return false;
+        return false; 
     }
 }
 
@@ -102,11 +109,12 @@ bool MemberCollection::checkMemberPassword(string username, string password, int
     }
     lastName = username.substr(0, caps);
     firstName = username.substr(caps); 
-
+    // check member exists, retrieve index to member pos in array
     int existingMember = findMember(firstName, lastName);
 
     if (existingMember != -1) {
         Member thisMember = members[existingMember];
+        //check password matches 
         if (thisMember.pwd == password) {
             currentMember = existingMember;
             return true;
@@ -115,6 +123,6 @@ bool MemberCollection::checkMemberPassword(string username, string password, int
             return false;
         }
     }
-    cout << "Invalid username, ";
+    cout << "Invalid username, "; //if member name not found
     return false;
 }

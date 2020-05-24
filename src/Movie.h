@@ -13,7 +13,7 @@ public:
         
     }
 
-    /* Initialise movie with values */
+    /* Initialise movie object with values */
     Movie(string _title, string _actors, string _directors, int _genre, int _classification, 
     int _duration, int _releaseDate, int _numCopies, int _numTimesBorrowed):
         title{_title}, 
@@ -32,15 +32,16 @@ public:
     void displayInfo();
 
     string title;   // unique identifier for a movie
-    int numCopies;  
-    int numAvailable;
-    int numTimesBorrowed;
+    int numCopies;  // number of overall copies
+    int numAvailable; // copies available in the store
+    int numTimesBorrowed; //overall num of times borrowed
     
 private:
     /* Helper function to display which genre/classification depending on input selection (int)
         Return string with genre/class */
     string getGenre(int code);
     string getClassification(int code);
+
     // movie details 
     string actors;
     string directors;
