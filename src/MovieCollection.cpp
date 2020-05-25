@@ -126,7 +126,7 @@ void MovieCollection::removeMovie() {
     Movie * existingMovie = allMovies.findMovie(title);
     // if the movie does not exist
     if (existingMovie == nullptr) {
-        cout << "Movie not found. ";
+        cout << "Movie not found. " << endl;
     } else {
         cout << "There are currently " << existingMovie->numCopies << " copies of " << title <<"." <<endl;
         cout << "Enter the number of copies to remove: ";

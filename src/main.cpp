@@ -20,7 +20,7 @@ MovieCollection movieCol; //initialise movie class
 void importData(); 
 
 int main() {
-    cout << "Importing sample data... press any key to continue";
+    cout << "Importing sample data... press enter to continue";
     importData(); //import sample data
     cout << endl;
     cin.ignore();

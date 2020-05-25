@@ -25,7 +25,7 @@ void MovieBST::_insertMovie(Movie newMovie, MovieNode * &node) {
         string currentTitle = node->data.title;
         string newTitle = newMovie.title;
         //alphabetically compare movie titles alphabetically
-        int titleComparison = strcmpi(currentTitle.c_str(), newTitle.c_str());
+        int titleComparison = strcasecmp(currentTitle.c_str(), newTitle.c_str());
         if (titleComparison < 0) {
             //put movie on right
             _insertMovie(newMovie, node->right);
@@ -56,7 +56,7 @@ MovieNode *& MovieBST::_findMovie(string movieTitle, MovieNode * &node) {
     } else {
         string currentTitle = node->data.title;
         //compares strings alphabetically
-        int titleComparison = strcmpi(currentTitle.c_str(), movieTitle.c_str());
+        int titleComparison = strcasecmp(currentTitle.c_str(), movieTitle.c_str());
         if (titleComparison < 0) {
             //search right subtree
             return _findMovie(movieTitle, node->right);
